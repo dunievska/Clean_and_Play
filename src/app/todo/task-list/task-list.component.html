@@ -1,0 +1,13 @@
+<ul>
+  <li class="flex-container task-item" *ngFor="let task of tasks">
+    <p>{{ task.name }}</p>
+    <div class="buttons-container">
+      <button class="btn-danger">
+        <img src="assets/svg/trash.svg" alt="" />
+      </button>
+      <button class="btn-success">
+        <img src="assets/svg/pencil.svg" alt="" />
+      </button>
+    </div>
+  </li>
+</ul>

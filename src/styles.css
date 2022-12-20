@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+/*
+primry color: #FFB703
+secondary color: #219EBC
+danger color: ##D62828
+success color: #548C2F
+
+tints: #FFD15C, #FFE8AD, #8ECAE6, #CBEDF6 #ab2020
+
+
+font color: #333333
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  color: #333333;
+}
+
+button {
+  cursor: pointer;
+}
