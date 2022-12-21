@@ -1,12 +1,15 @@
 <ul>
-  <li class="flex-container task-item" *ngFor="let task of tasks">
+  <li
+    class="flex-container task-item"
+    *ngFor="let task of tasks; let index = index"
+  >
     <p>{{ task.name }}</p>
     <div class="buttons-container">
-      <button class="btn-danger">
-        <img src="assets/svg/trash.svg" alt="" />
+      <button class="btn-danger" (click)="onDelete(index)">
+        <img src="assets/svg/trash.svg" alt="trash-icon" />
       </button>
-      <button class="btn-success">
-        <img src="assets/svg/pencil.svg" alt="" />
+      <button class="btn-success" (click)="onEdit()">
+        <img src="assets/svg/pencil.svg" alt="pencil-icon" />
       </button>
     </div>
   </li>

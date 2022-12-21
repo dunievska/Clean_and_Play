@@ -14,12 +14,21 @@ export class TodoService {
     new Task('Another task', false, 20, false),
   ];
 
-  public getTasks() {
+  public getTasks(): Task[] {
     return this.tasks.slice();
   }
 
   public addTask(task: Task) {
     this.tasks.push(task);
+    this.sendCurrentTasks();
+  }
+
+  public deleteTask(index: number) {
+    this.tasks.splice(index, 1);
+    this.sendCurrentTasks();
+  }
+
+  private sendCurrentTasks() {
     this.tasksChanged.next(this.tasks.slice());
   }
 }

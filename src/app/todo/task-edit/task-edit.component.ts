@@ -12,7 +12,7 @@ import { TodoService } from 'src/app/services/todo.service';
 export class TaskEditComponent {
   constructor(private todoService: TodoService) {}
 
-  public onSubmit(form: NgForm) {
+  public onSubmit(form: NgForm): void {
     const newTask = new Task(form.value.name, false, form.value.points, false);
     this.todoService.addTask(newTask);
     form.reset();

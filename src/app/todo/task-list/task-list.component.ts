@@ -10,6 +10,8 @@ import { Task } from 'src/app/models/task.model';
 })
 export class TaskListComponent implements OnInit {
   public tasks: Task[] = [];
+  public editMode: boolean = false;
+
   constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
@@ -17,5 +19,11 @@ export class TaskListComponent implements OnInit {
     this.todoService.tasksChanged.subscribe(
       (tasks: Task[]) => (this.tasks = tasks)
     );
+  }
+
+  onEdit() {}
+
+  onDelete(index: number): void {
+    this.todoService.deleteTask(index);
   }
 }
