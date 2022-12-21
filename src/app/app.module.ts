@@ -6,19 +6,17 @@ import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
 import { TaskListComponent } from './todo/task-list/task-list.component';
 import { TaskEditComponent } from './todo/task-edit/task-edit.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoComponent,
     TaskListComponent,
-    TaskEditComponent
+    TaskEditComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

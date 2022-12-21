@@ -21,6 +21,6 @@ font color: #333333
   color: #333333;
 }
 
-button {
+button:hover {
   cursor: pointer;
 }

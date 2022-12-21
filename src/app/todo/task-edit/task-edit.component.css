@@ -17,6 +17,7 @@ input {
   width: 450px;
   padding-left: 20px;
 }
+
 select {
   background-color: #cbedf6;
   border: none;
@@ -24,6 +25,11 @@ select {
   padding-left: 20px;
   border-radius: 5px;
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #d62828;
+}
+
 button {
   background-color: #219ebc;
   border-radius: 5px 50px 50px 5px;

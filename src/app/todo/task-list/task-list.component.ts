@@ -9,10 +9,13 @@ import { Task } from 'src/app/models/task.model';
   styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent implements OnInit {
-  tasks: Task[] = [];
+  public tasks: Task[] = [];
   constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
     this.tasks = this.todoService.getTasks();
+    this.todoService.tasksChanged.subscribe(
+      (tasks: Task[]) => (this.tasks = tasks)
+    );
   }
 }
