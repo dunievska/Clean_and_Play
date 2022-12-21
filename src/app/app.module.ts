@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
 import { TaskListComponent } from './todo/task-list/task-list.component';
-import { TaskEditComponent } from './todo/task-edit/task-edit.component';
+import { TaskAddComponent } from './todo/task-add/task-add.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     TodoComponent,
     TaskListComponent,
-    TaskEditComponent,
+    TaskAddComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

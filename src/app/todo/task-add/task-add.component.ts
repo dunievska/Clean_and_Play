@@ -1,15 +1,15 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Task } from 'src/app/models/task.model';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
-  selector: 'app-task-edit',
-  templateUrl: './task-edit.component.html',
-  styleUrls: ['./task-edit.component.css'],
+  selector: 'app-task-add',
+  templateUrl: './task-add.component.html',
+  styleUrls: ['./task-add.component.css'],
 })
-export class TaskEditComponent {
+export class TaskAddComponent {
   constructor(private todoService: TodoService) {}
 
   public onSubmit(form: NgForm): void {
