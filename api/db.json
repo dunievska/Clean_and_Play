@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {
+      "name": "First test task from json-server",
+      "completed": false,
+      "points": 20,
+      "hasOwner": false
+    }
+  ]
+}
