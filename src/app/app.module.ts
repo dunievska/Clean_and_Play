@@ -7,6 +7,7 @@ import { TodoComponent } from './todo/todo.component';
 import { TaskListComponent } from './todo/task-list/task-list.component';
 import { TaskAddComponent } from './todo/task-add/task-add.component';
 import { FormsModule } from '@angular/forms';
+import { TaskEditComponent } from './todo/task-list/task-edit/task-edit.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     TodoComponent,
     TaskListComponent,
     TaskAddComponent,
+    TaskEditComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

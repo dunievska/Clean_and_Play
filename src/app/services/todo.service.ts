@@ -23,6 +23,11 @@ export class TodoService {
     this.sendCurrentTasks();
   }
 
+  public updateTask(index: number, newName: string, newPoints: number) {
+    this.tasks[index].name = newName;
+    this.tasks[index].points = newPoints;
+  }
+
   public deleteTask(index: number) {
     this.tasks.splice(index, 1);
     this.sendCurrentTasks();

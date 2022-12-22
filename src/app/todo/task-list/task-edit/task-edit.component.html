@@ -1,22 +1,21 @@
 <div>
   <form
-    class="add-form flex-container"
+    class="edit-form flex-container"
     (ngSubmit)="onSubmit(form)"
     #form="ngForm"
   >
     <input
       type="text"
-      placeholder="Create new task"
+      placeholder="Rename your task"
       name="name"
       ngModel
       required
     />
-    <select name="points" ngModel>
-      <option>Select points</option>
+    <select name="points" ngModel required>
       <option value="10">10</option>
       <option value="20">20</option>
       <option value="30">30</option>
     </select>
-    <button type="submit" [disabled]="!form.valid">Add</button>
+    <button type="submit" [disabled]="!form.valid">Update</button>
   </form>
 </div>

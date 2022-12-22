@@ -1,16 +1,21 @@
 <ul>
-  <li
-    class="flex-container task-item"
-    *ngFor="let task of tasks; let index = index"
-  >
-    <p>{{ task.name }}</p>
-    <div class="buttons-container">
-      <button class="btn-danger" (click)="onDelete(index)">
-        <img src="assets/svg/trash.svg" alt="trash-icon" />
-      </button>
-      <button class="btn-success" (click)="onEdit()">
-        <img src="assets/svg/pencil.svg" alt="pencil-icon" />
-      </button>
+  <li *ngFor="let task of tasks; let index = index">
+    <div class="flex-container task-item">
+      <p>{{ task.name }}</p>
+      <div class="buttons-container">
+        <button class="btn-danger" (click)="onDelete(index)">
+          <img src="assets/svg/trash.svg" alt="trash-icon" />
+        </button>
+        <button class="btn-success" (click)="onEdit(index)">
+          <img src="assets/svg/pencil.svg" alt="pencil-icon" />
+        </button>
+      </div>
+    </div>
+    <div *ngIf="editMode && selectedTaskIndex === index">
+      <app-task-edit
+        [selectedTaskIndex]="selectedTaskIndex"
+        (onModeChange)="changeMode($event)"
+      ></app-task-edit>
     </div>
   </li>
 </ul>
