@@ -2,7 +2,6 @@ import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 
 import { TodoService } from 'src/app/services/todo.service';
 import { Task } from 'src/app/models/task.model';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
@@ -21,6 +20,12 @@ export class TaskListComponent implements OnInit {
     this.todoService.getAllTasks().subscribe((loadedTasks) => {
       this.tasks = loadedTasks;
       this.restartEditMode();
+    });
+    this.todoService.refreshTasksRequired.subscribe((response) => {
+      this.todoService.getAllTasks().subscribe((loadedTasks) => {
+        this.tasks = loadedTasks;
+        this.restartEditMode();
+      });
     });
   }
 
