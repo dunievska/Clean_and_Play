@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Task } from 'src/app/models/task.model';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
@@ -8,21 +9,25 @@ import { TodoService } from 'src/app/services/todo.service';
   styleUrls: ['./task-edit.component.css'],
 })
 export class TaskEditComponent {
-  @Input() selectedTaskIndex!: number;
-  @Output() onModeChange = new EventEmitter<boolean>();
-  editMode!: boolean;
+  @Input() selectedTask!: Task;
+  @Input() index!: number;
+  @Input() editModeArr: boolean[] = [];
+  @Output() onModeChange = new EventEmitter<boolean[]>();
 
   constructor(private todoService: TodoService) {}
 
-  public onSubmit(form: NgForm) {
+  public onSubmit(form: NgForm): void {
     const newTaskName = form.value.name;
     const newTaskPoints = form.value.points;
-    this.todoService.updateTask(
-      this.selectedTaskIndex,
+    const updateTask = new Task(
+      this.selectedTask.id,
       newTaskName,
-      newTaskPoints
+      false,
+      newTaskPoints,
+      false
     );
-    this.editMode = false;
-    this.onModeChange.emit(this.editMode);
+    this.todoService.updateTask(updateTask);
+    this.editModeArr[this.index] = false;
+    this.onModeChange.emit(this.editModeArr);
   }
 }

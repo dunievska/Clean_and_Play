@@ -1,5 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Task } from '../models/task.model';
 
@@ -7,33 +8,30 @@ import { Task } from '../models/task.model';
   providedIn: 'root',
 })
 export class TodoService {
-  public tasksChanged = new Subject<Task[]>();
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
+  constructor(private http: HttpClient) {}
 
-  private tasks: Task[] = [
-    new Task('First task', false, 10, false),
-    new Task('Another task', false, 20, false),
-  ];
+  public getAllTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>('/api/tasks');
+  }
 
-  public getTasks(): Task[] {
-    return this.tasks.slice();
+  public getTaskById(id: number): Observable<Task> {
+    return this.http.get<Task>(`/api/tasks/${id}`);
   }
 
   public addTask(task: Task) {
-    this.tasks.push(task);
-    this.sendCurrentTasks();
+    this.http.post('/api/tasks', task).subscribe();
   }
 
-  public updateTask(index: number, newName: string, newPoints: number) {
-    this.tasks[index].name = newName;
-    this.tasks[index].points = newPoints;
+  public updateTask(task: Task) {
+    return this.http
+      .put('/api/tasks', task, this.httpOptions)
+      .subscribe((r) => console.log(r));
   }
 
-  public deleteTask(index: number) {
-    this.tasks.splice(index, 1);
-    this.sendCurrentTasks();
-  }
-
-  private sendCurrentTasks() {
-    this.tasksChanged.next(this.tasks.slice());
+  public deleteTaskById(id: number) {
+    return this.http.delete<Task>(`/api/tasks/${id}`);
   }
 }

@@ -3,17 +3,27 @@
     <div class="flex-container task-item">
       <p>{{ task.name }}</p>
       <div class="buttons-container">
-        <button class="btn-danger" (click)="onDelete(index)">
+        <button
+          class="btn-danger"
+          (click)="onDelete(task)"
+          [disabled]="editModeArr[index]"
+        >
           <img src="assets/svg/trash.svg" alt="trash-icon" />
         </button>
-        <button class="btn-success" (click)="onEdit(index)">
+        <button
+          class="btn-success"
+          (click)="onEdit(task, index)"
+          [disabled]="editModeArr[index]"
+        >
           <img src="assets/svg/pencil.svg" alt="pencil-icon" />
         </button>
       </div>
     </div>
-    <div *ngIf="editMode && selectedTaskIndex === index">
+    <div *ngIf="editModeArr[index]">
       <app-task-edit
-        [selectedTaskIndex]="selectedTaskIndex"
+        [selectedTask]="selectedTask"
+        [index]="index"
+        [editModeArr]="editModeArr"
         (onModeChange)="changeMode($event)"
       ></app-task-edit>
     </div>

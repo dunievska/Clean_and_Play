@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 
 import { TodoService } from 'src/app/services/todo.service';
 import { Task } from 'src/app/models/task.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
@@ -9,29 +10,40 @@ import { Task } from 'src/app/models/task.model';
   styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent implements OnInit {
-  public editMode!: boolean;
+  public editModeArr: boolean[] = [];
   public tasks: Task[] = [];
-  public selectedTaskIndex!: number;
+  public selectedTask!: Task;
+  public selectedTaskId!: number;
 
   constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
-    this.tasks = this.todoService.getTasks();
-    this.todoService.tasksChanged.subscribe((tasks: Task[]) => {
-      this.tasks = tasks;
+    this.todoService.getAllTasks().subscribe((loadedTasks) => {
+      this.tasks = loadedTasks;
+      this.restartEditMode();
     });
   }
 
-  onEdit(index: number) {
-    this.changeMode(true);
-    this.selectedTaskIndex = index;
+  public onEdit(task: Task, index: number): void {
+    this.restartEditMode();
+    this.editModeArr[index] = true;
+    this.todoService.getTaskById(task.id).subscribe((loadedTask) => {
+      if (loadedTask) this.selectedTask = loadedTask;
+    });
   }
 
-  onDelete(index: number): void {
-    this.todoService.deleteTask(index);
+  public onDelete(task: Task): void {
+    this.tasks = this.tasks.filter((t) => t !== task);
+    this.todoService.deleteTaskById(task.id).subscribe();
   }
 
-  changeMode(editMode: boolean) {
-    this.editMode = editMode;
+  public changeMode(editModeArr: boolean[]): void {
+    this.editModeArr = editModeArr;
+  }
+
+  private restartEditMode(): void {
+    this.editModeArr = this.editModeArr = new Array(this.tasks.length).fill(
+      false
+    );
   }
 }
