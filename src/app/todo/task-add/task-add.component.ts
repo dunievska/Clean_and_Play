@@ -13,8 +13,18 @@ export class TaskAddComponent {
   constructor(private todoService: TodoService) {}
 
   public onSubmit(form: NgForm): void {
-    const newTask = new Task(form.value.name, false, form.value.points, false);
+    const newTask = new Task(
+      this.drawId(),
+      form.value.name,
+      false,
+      +form.value.points,
+      false
+    );
     this.todoService.addTask(newTask);
     form.reset();
+  }
+
+  private drawId() {
+    return Math.floor(Math.random() * 100000000);
   }
 }
