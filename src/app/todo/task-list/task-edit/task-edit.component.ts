@@ -18,7 +18,7 @@ export class TaskEditComponent {
 
   public onSubmit(form: NgForm): void {
     const newTaskName = form.value.name;
-    const newTaskPoints = form.value.points;
+    const newTaskPoints = +form.value.points;
     const updateTask = new Task(
       this.selectedTask.id,
       newTaskName,

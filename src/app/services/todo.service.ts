@@ -27,8 +27,8 @@ export class TodoService {
 
   public updateTask(task: Task) {
     return this.http
-      .put('/api/tasks', task, this.httpOptions)
-      .subscribe((r) => console.log(r));
+      .put('/api/tasks/' + task.id, task, this.httpOptions)
+      .subscribe();
   }
 
   public deleteTaskById(id: number) {

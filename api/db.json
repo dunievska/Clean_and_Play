@@ -1,13 +1,6 @@
 {
   "tasks": [
     {
-      "id": 53279818,
-      "name": "Buy milk and bread",
-      "completed": false,
-      "points": 10,
-      "hasOwner": false
-    },
-    {
       "id": 74860039,
       "name": "Wash the dishes",
       "completed": false,
@@ -19,6 +12,13 @@
       "name": "Take out the garbage",
       "completed": false,
       "points": 20,
+      "hasOwner": false
+    },
+    {
+      "id": 43643488,
+      "name": "Buy milk",
+      "completed": false,
+      "points": 10,
       "hasOwner": false
     }
   ]
