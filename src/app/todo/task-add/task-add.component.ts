@@ -7,7 +7,7 @@ import { TodoService } from 'src/app/services/todo.service';
 @Component({
   selector: 'app-task-add',
   templateUrl: './task-add.component.html',
-  styleUrls: ['./task-add.component.css'],
+  styleUrls: ['./task-add.component.scss'],
 })
 export class TaskAddComponent {
   constructor(private todoService: TodoService) {}
