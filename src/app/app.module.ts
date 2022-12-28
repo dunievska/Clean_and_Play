@@ -20,6 +20,7 @@ import { UserTasksComponent } from './child/child-todo/user-tasks/user-tasks.com
 import { ChildTodoComponent } from './child/child-todo/child-todo.component';
 import { AllTasksComponent } from './child/child-todo/all-tasks/all-tasks.component';
 import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { HomeComponent } from './home/home.component';
     UserTasksComponent,
     AllTasksComponent,
     HomeComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
