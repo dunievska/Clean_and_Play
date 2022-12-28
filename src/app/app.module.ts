@@ -10,10 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodoComponent } from './todo/todo.component';
-import { TaskListComponent } from './todo/task-list/task-list.component';
-import { TaskAddComponent } from './todo/task-add/task-add.component';
-import { TaskEditComponent } from './todo/task-list/task-edit/task-edit.component';
+import { TodoComponent } from './parent/todo/todo.component';
+import { TaskListComponent } from './parent/todo/task-list/task-list.component';
+import { TaskAddComponent } from './parent/todo/task-add/task-add.component';
+import { TaskEditComponent } from './parent/todo/task-list/task-edit/task-edit.component';
+import { ParentComponent } from './parent/parent.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TaskEditComponent } from './todo/task-list/task-edit/task-edit.componen
     TaskListComponent,
     TaskAddComponent,
     TaskEditComponent,
+    ParentComponent,
   ],
   imports: [
     BrowserModule,
