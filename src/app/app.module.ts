@@ -15,6 +15,8 @@ import { TaskListComponent } from './parent/todo/task-list/task-list.component';
 import { TaskAddComponent } from './parent/todo/task-add/task-add.component';
 import { TaskEditComponent } from './parent/todo/task-list/task-edit/task-edit.component';
 import { ParentComponent } from './parent/parent.component';
+import { ChildComponent } from './child/child.component';
+import { UserTasksComponent } from './child/todo/user-tasks/user-tasks.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ParentComponent } from './parent/parent.component';
     TaskAddComponent,
     TaskEditComponent,
     ParentComponent,
+    ChildComponent,
+    UserTasksComponent,
   ],
   imports: [
     BrowserModule,
