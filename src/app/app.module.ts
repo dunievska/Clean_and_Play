@@ -17,6 +17,7 @@ import { TaskEditComponent } from './parent/todo/task-list/task-edit/task-edit.c
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { UserTasksComponent } from './child/todo/user-tasks/user-tasks.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UserTasksComponent } from './child/todo/user-tasks/user-tasks.component
     ParentComponent,
     ChildComponent,
     UserTasksComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
