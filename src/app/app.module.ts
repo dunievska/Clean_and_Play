@@ -16,7 +16,9 @@ import { TaskAddComponent } from './parent/todo/task-add/task-add.component';
 import { TaskEditComponent } from './parent/todo/task-list/task-edit/task-edit.component';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
-import { UserTasksComponent } from './child/todo/user-tasks/user-tasks.component';
+import { UserTasksComponent } from './child/child-todo/user-tasks/user-tasks.component';
+import { ChildTodoComponent } from './child/child-todo/child-todo.component';
+import { AllTasksComponent } from './child/child-todo/all-tasks/all-tasks.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -28,7 +30,9 @@ import { HomeComponent } from './home/home.component';
     TaskEditComponent,
     ParentComponent,
     ChildComponent,
+    ChildTodoComponent,
     UserTasksComponent,
+    AllTasksComponent,
     HomeComponent,
   ],
   imports: [
