@@ -1,21 +1,18 @@
-<div>
-  <form
-    class="edit-form flex-container"
-    (ngSubmit)="onSubmit(form)"
-    #form="ngForm"
-  >
-    <input
-      type="text"
-      placeholder="Rename your task"
-      name="name"
-      ngModel
-      required
-    />
-    <select name="points" ngModel required>
+<form class="edit-form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <mat-form-field class="rename-input">
+    <mat-label>Rename your task</mat-label>
+    <input matInput name="name" ngModel required />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Select points</mat-label>
+    <select name="points" matNativeControl ngModel required>
       <option value="10">10</option>
       <option value="20">20</option>
       <option value="30">30</option>
     </select>
-    <button type="submit" [disabled]="!form.valid">Update</button>
-  </form>
-</div>
+  </mat-form-field>
+  <button mat-flat-button color="accent" type="submit" [disabled]="!form.valid">
+    Update
+  </button>
+  <button mat-stroked-button type="button" (click)="onCancel()">Cancel</button>
+</form>

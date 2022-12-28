@@ -1,42 +1,14 @@
-.flex-container {
+.form-container {
+  margin: 30px auto;
+  max-width: 60%;
+}
+
+.add-form {
   display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: 20px;
+  margin-left: 20px;
 }
 
-input,
-select,
-button {
-  height: 60px;
-}
-
-input {
-  background-color: #cbedf6;
-  border: none;
-  border-radius: 50px 5px 5px 50px;
-  width: 450px;
-  padding-left: 20px;
-}
-
-select {
-  background-color: #cbedf6;
-  border: none;
-  width: 250px;
-  padding-left: 20px;
-  border-radius: 5px;
-}
-
-input.ng-invalid.ng-touched {
-  border: 1px solid #d62828;
-}
-
-button {
-  background-color: #219ebc;
-  border-radius: 5px 50px 50px 5px;
-  border: none;
-  width: 155px;
-}
-
-button:hover {
-  background-color: #1a7e96;
+.name-input {
+  width: 40%;
 }

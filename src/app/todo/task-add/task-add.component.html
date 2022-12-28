@@ -1,22 +1,26 @@
-<div>
-  <form
-    class="add-form flex-container"
-    (ngSubmit)="onSubmit(form)"
-    #form="ngForm"
-  >
-    <input
-      type="text"
-      placeholder="Create new task"
-      name="name"
-      ngModel
-      required
-    />
-    <select name="points" ngModel required>
-      <option>Select points</option>
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="30">30</option>
-    </select>
-    <button type="submit" [disabled]="!form.valid">Add</button>
-  </form>
-</div>
+<mat-card class="form-container">
+  <mat-card-content>
+    <form class="add-form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <mat-form-field class="name-input">
+        <mat-label>Create new task</mat-label>
+        <input matInput type="text" name="name" ngModel required />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Select points</mat-label>
+        <select name="points" matNativeControl ngModel required>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select></mat-form-field
+      >
+      <button
+        mat-flat-button
+        color="accent"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Add
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

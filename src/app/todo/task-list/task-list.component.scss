@@ -1,24 +1,18 @@
-.flex-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px 0 20px;
-}
-
 .task-item {
-  background-color: #ffb703;
-  width: 875px;
-  height: 60px;
-  border-radius: 50px;
-  margin-bottom: 30px;
+  margin: 10px auto;
+  width: 60%;
 }
 
-.buttons-container {
-  display: flex;
+.task-header {
   gap: 10px;
 }
 
-button {
+.task-name {
+  align-self: center;
+}
+
+.task-points {
+  background-color: #ffb703;
   height: 40px;
   width: 40px;
   border-radius: 50%;
@@ -28,19 +22,19 @@ button {
   align-items: center;
 }
 
-.btn-danger {
-  background-color: #d62828;
+.task-owner {
+  background-color: dimgray;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.btn-danger:hover {
-  background-color: #ab2020;
-}
-.btn-success {
-  background-color: #548c2f;
-}
-
-.btn-success:hover {
-  background-color: #437026;
+.buttons-container {
+  gap: 10px;
 }
 
 img {

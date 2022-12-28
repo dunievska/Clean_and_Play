@@ -30,4 +30,8 @@ export class TaskEditComponent {
     this.editModeArr[this.index] = false;
     this.onModeChange.emit(this.editModeArr);
   }
+
+  public onCancel() {
+    this.editModeArr[this.index] = false;
+  }
 }

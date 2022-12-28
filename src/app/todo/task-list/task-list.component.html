@@ -1,24 +1,33 @@
-<ul>
-  <li *ngFor="let task of tasks; let index = index">
-    <div class="flex-container task-item">
-      <p>{{ task.name }}</p>
-      <div class="buttons-container">
-        <button
-          class="btn-danger"
-          (click)="onDelete(task)"
-          [disabled]="editModeArr[index]"
-        >
-          <img src="assets/svg/trash.svg" alt="trash-icon" />
-        </button>
-        <button
-          class="btn-success"
-          (click)="onEdit(task, index)"
-          [disabled]="editModeArr[index]"
-        >
-          <img src="assets/svg/pencil.svg" alt="pencil-icon" />
-        </button>
+<mat-card *ngFor="let task of tasks; let index = index" class="task-item">
+  <mat-card-content>
+    <mat-card-header class="task-header">
+      <div class="task-owner">
+        <img src="assets/svg/user.svg" alt="user-icon" />
       </div>
-    </div>
+      <div class="task-points">{{ task.points }}</div>
+      <div class="task-name">{{ task.name }}</div>
+    </mat-card-header>
+
+    <mat-card-actions align="end" class="buttons-container">
+      <button
+        mat-mini-fab
+        color="warn"
+        class="btn-danger"
+        (click)="onDelete(task)"
+        [disabled]="editModeArr[index]"
+      >
+        <img src="assets/svg/trash.svg" alt="trash-icon" />
+      </button>
+      <button
+        mat-mini-fab
+        class="btn-success"
+        (click)="onEdit(task, index)"
+        [disabled]="editModeArr[index]"
+      >
+        <img src="assets/svg/pencil.svg" alt="pencil-icon" />
+      </button>
+    </mat-card-actions>
+
     <div *ngIf="editModeArr[index]">
       <app-task-edit
         [selectedTask]="selectedTask"
@@ -27,5 +36,5 @@
         (onModeChange)="changeMode($event)"
       ></app-task-edit>
     </div>
-  </li>
-</ul>
+  </mat-card-content>
+</mat-card>
