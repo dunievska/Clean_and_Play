@@ -23,6 +23,10 @@ export class TodoService {
     return this.http.get<Task>(`/api/tasks/${id}`);
   }
 
+  public getTasksWithoutOwner(): Observable<Task[]> {
+    return this.http.get<Task[]>(`/api/tasks?hasOwner=false`);
+  }
+
   public addTask(task: Task) {
     this.http
       .post<Task>('/api/tasks', task)
