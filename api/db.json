@@ -22,7 +22,7 @@
       "completed": false,
       "points": 10,
       "hasOwner": true,
-      "onwer": 1
+      "owner": 1
     },
     {
       "id": 23185484,
@@ -30,7 +30,7 @@
       "completed": false,
       "points": 30,
       "hasOwner": true,
-      "onwer": 1
+      "owner": 1
     }
   ]
 }
