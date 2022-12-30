@@ -5,21 +5,32 @@
       "name": "Wash the dishes",
       "completed": false,
       "points": 20,
-      "hasOwner": false
+      "hasOwner": false,
+      "owner": null
     },
     {
       "id": 59018877,
       "name": "Take out the garbage",
       "completed": false,
       "points": 20,
-      "hasOwner": false
+      "hasOwner": false,
+      "owner": null
     },
     {
       "id": 43643488,
       "name": "Buy milk",
       "completed": false,
       "points": 10,
-      "hasOwner": false
+      "hasOwner": true,
+      "onwer": 1
+    },
+    {
+      "id": 23185484,
+      "name": "Take the dog for a walk",
+      "completed": false,
+      "points": 30,
+      "hasOwner": true,
+      "onwer": 1
     }
   ]
 }

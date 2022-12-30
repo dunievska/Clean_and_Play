@@ -24,7 +24,8 @@ export class TaskEditComponent {
       newTaskName,
       false,
       newTaskPoints,
-      false
+      false,
+      null
     );
     this.todoService.updateTask(updateTask);
     this.editModeArr[this.index] = false;

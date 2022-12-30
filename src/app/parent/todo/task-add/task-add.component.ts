@@ -18,7 +18,8 @@ export class TaskAddComponent {
       form.value.name,
       false,
       +form.value.points,
-      false
+      false,
+      null
     );
     this.todoService.addTask(newTask);
     form.reset();

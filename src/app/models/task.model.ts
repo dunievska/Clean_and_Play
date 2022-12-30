@@ -4,6 +4,7 @@ export class Task {
     public name: string,
     public completed: boolean,
     public points: number,
-    public hasOwner: boolean
+    public hasOwner: boolean,
+    public owner: number | null // in future id of user
   ) {}
 }

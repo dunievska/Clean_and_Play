@@ -16,6 +16,11 @@ export class AllTasksComponent implements OnInit {
     this.todoService.getTasksWithoutOwner().subscribe((loadedTasks) => {
       this.freeTasks = loadedTasks;
     });
+    this.todoService.refreshTasksRequired.subscribe(() => {
+      this.todoService.getTasksWithoutOwner().subscribe((loadedTasks) => {
+        this.freeTasks = loadedTasks;
+      });
+    });
   }
 
   public onAdd(addedTask: Task) {
