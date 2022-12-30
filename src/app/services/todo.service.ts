@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 
@@ -25,6 +25,12 @@ export class TodoService {
 
   public getTasksWithoutOwner(): Observable<Task[]> {
     return this.http.get<Task[]>(`/api/tasks?hasOwner=false`);
+  }
+
+  public getTaskByOwner(ownerId: number): Observable<Task[]> {
+    return this.http.get<Task[]>('api/tasks', {
+      params: new HttpParams().set('owner', ownerId),
+    });
   }
 
   public addTask(task: Task) {

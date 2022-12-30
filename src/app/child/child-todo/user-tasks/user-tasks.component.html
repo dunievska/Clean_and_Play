@@ -1,1 +1,15 @@
-<p>user-tasks works!</p>
+<div class="title">Your tasks</div>
+<mat-card *ngFor="let task of userTasks" class="task-item">
+  <div class="task-details">
+    <p class="task-points">{{ task.points }}</p>
+    <p class="task-name">{{ task.name }}</p>
+  </div>
+  <mat-card-actions class="buttons-container">
+    <button mat-fab color="warn">
+      <img src="assets/svg/trash.svg" alt="delete-icon" />
+    </button>
+    <button mat-fab color="primary">
+      <img src="assets/svg/check.svg" alt="check-icon" />
+    </button>
+  </mat-card-actions>
+</mat-card>
