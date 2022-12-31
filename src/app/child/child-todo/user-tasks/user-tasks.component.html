@@ -1,15 +1,23 @@
 <div class="title">Your tasks</div>
-<mat-card *ngFor="let task of userTasks" class="task-item">
+<mat-card *ngFor="let task of notCompletedTasks" class="task-item">
   <div class="task-details">
     <p class="task-points">{{ task.points }}</p>
     <p class="task-name">{{ task.name }}</p>
   </div>
   <mat-card-actions class="buttons-container">
-    <button mat-fab color="warn">
+    <button mat-fab color="warn" (click)="onDelete(task)">
       <img src="assets/svg/trash.svg" alt="delete-icon" />
     </button>
-    <button mat-fab color="primary">
+    <button mat-fab color="primary" (click)="onCheck(task)">
       <img src="assets/svg/check.svg" alt="check-icon" />
     </button>
   </mat-card-actions>
+</mat-card>
+
+<div class="title">Your completed tasks</div>
+<mat-card *ngFor="let task of completedTasks" class="task-item completed">
+  <div class="task-details">
+    <p class="task-points">{{ task.points }}</p>
+    <p class="task-name">{{ task.name }}</p>
+  </div>
 </mat-card>

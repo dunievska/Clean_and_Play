@@ -45,14 +45,13 @@ export class TodoService {
   }
 
   public updateTask(task: Task) {
-    this.http
+    return this.http
       .put<Task>('/api/tasks/' + task.id, task, this.httpOptions)
       .pipe(
         tap(() => {
           this.refreshTasksRequired.next();
         })
-      )
-      .subscribe();
+      );
   }
 
   public deleteTaskById(id: number) {

@@ -26,6 +26,8 @@ export class AllTasksComponent implements OnInit {
   public onAdd(addedTask: Task) {
     addedTask.hasOwner = true;
     addedTask.owner = 1; // in future dynamically add owner id
-    this.todoService.updateTask(addedTask);
+    this.todoService.updateTask(addedTask).subscribe(() => {
+      this.freeTasks = this.freeTasks.filter((f) => f !== addedTask);
+    });
   }
 }
