@@ -2,10 +2,10 @@
 <mat-card *ngFor="let task of tasks; let index = index" class="task-item">
   <mat-card-content>
     <mat-card-header class="task-details">
-      <div class="task-owner">
+      <div class="task-owner" *ngIf="task.hasOwner" matTooltip="Owner">
         <img src="assets/svg/user.svg" alt="user-icon" />
       </div>
-      <div class="task-points">{{ task.points }}</div>
+      <div class="task-points" matTooltip="Points">{{ task.points }}</div>
       <div class="task-name">{{ task.name }}</div>
     </mat-card-header>
 
@@ -43,10 +43,10 @@
 <div class="title">Completed tasks</div>
 <mat-card *ngFor="let task of completedTasks" class="task-item completed">
   <mat-card-header class="task-details">
-    <div class="task-owner">
+    <div class="task-owner" matTooltip="Owner">
       <img src="assets/svg/user.svg" alt="user-icon" />
     </div>
-    <p class="task-points">{{ task.points }}</p>
+    <p class="task-points" matTooltip="Points">{{ task.points }}</p>
     <p class="task-name">{{ task.name }}</p>
   </mat-card-header>
 </mat-card>

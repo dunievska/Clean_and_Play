@@ -1,7 +1,9 @@
 <div class="title">Add your next task</div>
 <mat-card *ngFor="let task of freeTasks" class="task-item">
   <div class="task-details">
-    <p class="task-points">{{ task.points }}</p>
+    <p class="task-points" matTooltip="Points to get">
+      {{ task.points }}
+    </p>
     <p class="task-name">{{ task.name }}</p>
   </div>
   <button mat-fab (click)="onAdd(task)">

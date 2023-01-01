@@ -1,7 +1,7 @@
 <div class="title">Your tasks</div>
 <mat-card *ngFor="let task of notCompletedTasks" class="task-item">
   <div class="task-details">
-    <p class="task-points">{{ task.points }}</p>
+    <p class="task-points" matTooltip="Points">{{ task.points }}</p>
     <p class="task-name">{{ task.name }}</p>
   </div>
   <mat-card-actions class="buttons-container">
@@ -17,7 +17,7 @@
 <div class="title">Your completed tasks</div>
 <mat-card *ngFor="let task of completedTasks" class="task-item completed">
   <div class="task-details">
-    <p class="task-points">{{ task.points }}</p>
+    <p class="task-points" matTooltip="Points">{{ task.points }}</p>
     <p class="task-name">{{ task.name }}</p>
   </div>
 </mat-card>
