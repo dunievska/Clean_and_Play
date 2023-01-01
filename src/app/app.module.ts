@@ -22,6 +22,9 @@ import { ChildTodoComponent } from './child/child-todo/child-todo.component';
 import { AllTasksComponent } from './child/child-todo/all-tasks/all-tasks.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
+import { ScheduleComponent } from './parent/schedule/schedule.component';
+import { ReservationListComponent } from './parent/schedule/reservation-list/reservation-list.component';
+import { ReservationAddComponent } from './parent/schedule/reservation-add/reservation-add.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { HeaderComponent } from './header/header.component';
     AllTasksComponent,
     HomeComponent,
     HeaderComponent,
+    ScheduleComponent,
+    ReservationListComponent,
+    ReservationAddComponent,
   ],
   imports: [
     BrowserModule,
