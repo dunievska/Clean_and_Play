@@ -27,7 +27,7 @@ export class TaskEditComponent {
       false,
       null
     );
-    this.todoService.updateTask(updateTask);
+    this.todoService.updateTask(updateTask).subscribe();
     this.editModeArr[this.index] = false;
     this.onModeChange.emit(this.editModeArr);
   }
