@@ -13,17 +13,20 @@ export class TaskListComponent implements OnInit {
   public tasks: Task[] = [];
   public selectedTask!: Task;
   public selectedTaskId!: number;
+  public completedTasks: Task[] = [];
 
   constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
     this.todoService.getAllTasks().subscribe((loadedTasks) => {
-      this.tasks = loadedTasks;
+      this.tasks = loadedTasks.filter((t) => !t.completed);
+      this.completedTasks = loadedTasks.filter((t) => t.completed);
       this.restartEditMode();
     });
     this.todoService.refreshTasksRequired.subscribe((response) => {
       this.todoService.getAllTasks().subscribe((loadedTasks) => {
-        this.tasks = loadedTasks;
+        this.tasks = loadedTasks.filter((t) => !t.completed);
+        this.completedTasks = loadedTasks.filter((t) => t.completed);
         this.restartEditMode();
       });
     });
