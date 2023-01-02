@@ -1,1 +1,39 @@
-<p>reservation-add works!</p>
+<mat-card class="form-container">
+  <mat-card-content>
+    <form class="add-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <mat-form-field>
+        <mat-label>Which day?</mat-label>
+        <input matInput [matDatepicker]="picker" name="day" ngModel required />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>What time?</mat-label>
+        <input matInput type="time" name="start" ngModel required />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>How long?</mat-label>
+        <input
+          matInput
+          type="number"
+          name="time"
+          min="1"
+          max="120"
+          ngModel
+          required
+        />
+      </mat-form-field>
+      <button
+        mat-mini-fab
+        color="accent"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        +
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
