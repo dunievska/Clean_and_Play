@@ -18,11 +18,7 @@
       <button mat-mini-fab color="warn" class="btn-danger">
         <img src="assets/svg/trash.svg" alt="trash-icon" />
       </button>
-      <button
-        mat-mini-fab
-        class="btn-success"
-        (click)="onEdit(reservation, index)"
-      >
+      <button mat-mini-fab class="btn-success" (click)="onEdit(index)">
         <img src="assets/svg/pencil.svg" alt="pencil-icon" />
       </button>
     </mat-card-actions>
@@ -30,7 +26,11 @@
 
   <ng-template #editing>
     <mat-card-header>
-      <form class="edit-form" #form="ngForm">
+      <form
+        class="edit-form"
+        #form="ngForm"
+        (ngSubmit)="onSubmit(reservation, form)"
+      >
         <mat-form-field>
           <mat-label>Which day?</mat-label>
           <input
@@ -68,7 +68,7 @@
         >
           <img src="assets/svg/check.svg" alt="check icon" />
         </button>
-        <button mat-mini-fab>
+        <button mat-mini-fab (click)="onCancel()">
           <img src="assets/svg/cross.svg" alt="cross icon" />
         </button>
       </form>

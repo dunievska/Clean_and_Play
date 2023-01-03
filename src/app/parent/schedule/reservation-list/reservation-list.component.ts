@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Reservation } from 'src/app/models/reservation';
 import { ScheduleService } from 'src/app/services/schedule.service';
 
@@ -27,8 +28,20 @@ export class ReservationListComponent implements OnInit {
     return Math.floor(time / 1000 / 60);
   }
 
-  public onEdit(selectedRes: Reservation, index: number) {
+  public onEdit(index: number) {
     this.editModeArr[index] = true;
+  }
+
+  public onCancel() {
+    this.restartEditMode();
+  }
+
+  public onSubmit(editedRes: Reservation, form: NgForm) {
+    editedRes.start = this.setDateStart(form);
+    editedRes.end = this.setDateEnd(form);
+    this.scheduleService.updateReservation(editedRes).subscribe();
+    this.restartEditMode();
+    form.reset();
   }
 
   private sortReservationsByDate(res: Reservation[]) {
@@ -41,5 +54,19 @@ export class ReservationListComponent implements OnInit {
     this.editModeArr = this.editModeArr = new Array(
       this.reservations.length
     ).fill(false);
+  }
+
+  private setDateStart(form: NgForm) {
+    const startHour = form.value.start;
+    const hour = startHour.split(':');
+    const day = form.value.day;
+    return new Date(day.setHours(...hour));
+  }
+
+  private setDateEnd(form: NgForm) {
+    const howLong = +form.value.time;
+    const startHour = form.value.start;
+    const hour = startHour.split(':');
+    return new Date(form.value.day.setHours(...hour, howLong * 60));
   }
 }
