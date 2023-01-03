@@ -29,4 +29,8 @@ export class ScheduleService {
   public addReservation(reservation: Reservation) {
     return this.http.post<Reservation>(this.url, reservation);
   }
+
+  public deleteReservation(reservation: Reservation) {
+    return this.http.delete<Reservation>(`${this.url}/${reservation.id}`);
+  }
 }

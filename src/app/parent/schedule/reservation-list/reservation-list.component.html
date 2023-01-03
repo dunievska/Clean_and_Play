@@ -14,8 +14,13 @@
   </mat-card-header>
 
   <ng-template [ngIf]="!editModeArr[index]" [ngIfElse]="editing">
-    <mat-card-actions align="end">
-      <button mat-mini-fab color="warn" class="btn-danger">
+    <mat-card-actions align="end" class="btns-container">
+      <button
+        mat-mini-fab
+        color="warn"
+        class="btn-danger"
+        (click)="onDelete(reservation)"
+      >
         <mat-icon>delete_forever</mat-icon>
       </button>
       <button mat-mini-fab class="btn-success" (click)="onEdit(index)">

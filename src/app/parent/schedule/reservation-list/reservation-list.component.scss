@@ -1,5 +1,5 @@
 .title {
-  margin: 40px 15px 15px 40px;
+  margin-top: 30px;
 }
 
 .reservation-item {
@@ -21,6 +21,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.btns-container {
+  gap: 10px;
 }
 
 .edit-form {

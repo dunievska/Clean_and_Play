@@ -28,6 +28,12 @@ export class ReservationListComponent implements OnInit {
     return Math.floor(time / 1000 / 60);
   }
 
+  public onDelete(deletedRes: Reservation) {
+    this.scheduleService.deleteReservation(deletedRes).subscribe(() => {
+      this.reservations = this.reservations.filter((r) => r !== deletedRes);
+    });
+  }
+
   public onEdit(index: number) {
     this.editModeArr[index] = true;
   }
