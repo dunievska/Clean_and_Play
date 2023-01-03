@@ -16,10 +16,10 @@
   <ng-template [ngIf]="!editModeArr[index]" [ngIfElse]="editing">
     <mat-card-actions align="end">
       <button mat-mini-fab color="warn" class="btn-danger">
-        <img src="assets/svg/trash.svg" alt="trash-icon" />
+        <mat-icon>delete_forever</mat-icon>
       </button>
       <button mat-mini-fab class="btn-success" (click)="onEdit(index)">
-        <img src="assets/svg/pencil.svg" alt="pencil-icon" />
+        <mat-icon>create</mat-icon>
       </button>
     </mat-card-actions>
   </ng-template>
@@ -66,10 +66,10 @@
           type="submit"
           [disabled]="!form.valid"
         >
-          <img src="assets/svg/check.svg" alt="check icon" />
+          <mat-icon>done</mat-icon>
         </button>
         <button mat-mini-fab (click)="onCancel()">
-          <img src="assets/svg/cross.svg" alt="cross icon" />
+          <mat-icon>clear</mat-icon>
         </button>
       </form>
     </mat-card-header>

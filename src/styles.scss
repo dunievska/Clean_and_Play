@@ -1,15 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-/*
-primry color: #FFB703
-secondary color: #219EBC
-danger color: ##D62828
-success color: #548C2F
-
-tints: #FFD15C, #FFE8AD,#fff8e6, #8ECAE6, #CBEDF6 #ab2020
-
-
-font color: #333333
-*/
 
 * {
   margin: 0;
@@ -22,22 +11,14 @@ font color: #333333
 }
 
 body {
-  background-color: #fff8e6;
-}
-
-button:hover {
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
+  background-color: #f8f9fa;
 }
 
 html,
 body {
   height: 100%;
 }
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+a {
+  text-decoration: none;
 }

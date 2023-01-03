@@ -5,11 +5,11 @@
     <p class="task-name">{{ task.name }}</p>
   </div>
   <mat-card-actions class="buttons-container">
-    <button mat-fab color="warn" (click)="onDelete(task)">
-      <img src="assets/svg/trash.svg" alt="delete-icon" />
+    <button mat-mini-fab color="warn" (click)="onDelete(task)">
+      <mat-icon>delete_forever</mat-icon>
     </button>
-    <button mat-fab color="primary" (click)="onCheck(task)">
-      <img src="assets/svg/check.svg" alt="check-icon" />
+    <button mat-mini-fab color="accent" (click)="onCheck(task)">
+      <mat-icon>done</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>

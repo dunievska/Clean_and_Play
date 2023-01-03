@@ -11,8 +11,10 @@
       <option value="30">30</option>
     </select>
   </mat-form-field>
-  <button mat-flat-button color="accent" type="submit" [disabled]="!form.valid">
-    Update
+  <button mat-mini-fab color="accent" type="submit" [disabled]="!form.valid">
+    <mat-icon>done</mat-icon>
   </button>
-  <button mat-stroked-button type="button" (click)="onCancel()">Cancel</button>
+  <button mat-mini-fab type="button" (click)="onCancel()">
+    <mat-icon>clear</mat-icon>
+  </button>
 </form>
