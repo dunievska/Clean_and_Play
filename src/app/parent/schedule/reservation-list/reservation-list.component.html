@@ -1,9 +1,77 @@
 <div class="title">All reservations</div>
-<mat-card *ngFor="let reservation of reservations" class="reservation-item">
+
+<mat-card
+  *ngFor="let reservation of reservations; let index = index"
+  class="reservation-item"
+>
   <mat-card-header class="reservation-details">
     <div class="res-minutes" matTooltip="Minutes">
       {{ getHowLong(reservation) }}
     </div>
-    <div class="res-date">{{ reservation.start | date : "d LLLL HH:mm" }}</div>
+    <div class="res-date">
+      {{ reservation.start | date : "d LLLL HH:mm" }}
+    </div>
   </mat-card-header>
+
+  <ng-template [ngIf]="!editModeArr[index]" [ngIfElse]="editing">
+    <mat-card-actions align="end">
+      <button mat-mini-fab color="warn" class="btn-danger">
+        <img src="assets/svg/trash.svg" alt="trash-icon" />
+      </button>
+      <button
+        mat-mini-fab
+        class="btn-success"
+        (click)="onEdit(reservation, index)"
+      >
+        <img src="assets/svg/pencil.svg" alt="pencil-icon" />
+      </button>
+    </mat-card-actions>
+  </ng-template>
+
+  <ng-template #editing>
+    <mat-card-header>
+      <form class="edit-form" #form="ngForm">
+        <mat-form-field>
+          <mat-label>Which day?</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            name="day"
+            ngModel
+            required
+          />
+          <mat-datepicker-toggle matIconSuffix [for]="picker">
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>What time?</mat-label>
+          <input matInput type="time" name="start" ngModel required />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>How long?</mat-label>
+          <input
+            matInput
+            type="number"
+            name="time"
+            min="1"
+            max="120"
+            ngModel
+            required
+          />
+        </mat-form-field>
+        <button
+          mat-mini-fab
+          color="accent"
+          type="submit"
+          [disabled]="!form.valid"
+        >
+          <img src="assets/svg/check.svg" alt="check icon" />
+        </button>
+        <button mat-mini-fab>
+          <img src="assets/svg/cross.svg" alt="cross icon" />
+        </button>
+      </form>
+    </mat-card-header>
+  </ng-template>
 </mat-card>

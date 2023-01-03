@@ -9,12 +9,14 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 })
 export class ReservationListComponent implements OnInit {
   public reservations: Reservation[] = [];
+  public editModeArr: boolean[] = [];
 
   constructor(private scheduleService: ScheduleService) {}
 
   ngOnInit(): void {
     this.scheduleService.getAllReservations().subscribe((loadedRes) => {
       this.reservations = this.sortReservationsByDate(loadedRes);
+      this.restartEditMode();
     });
   }
 
@@ -25,9 +27,19 @@ export class ReservationListComponent implements OnInit {
     return Math.floor(time / 1000 / 60);
   }
 
+  public onEdit(selectedRes: Reservation, index: number) {
+    this.editModeArr[index] = true;
+  }
+
   private sortReservationsByDate(res: Reservation[]) {
     return res.sort(
       (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
     );
+  }
+
+  private restartEditMode(): void {
+    this.editModeArr = this.editModeArr = new Array(
+      this.reservations.length
+    ).fill(false);
   }
 }
