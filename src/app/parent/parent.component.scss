@@ -1,5 +1,7 @@
-.grid-2-cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 20px;
+.container {
+  width: 50%;
+}
+
+.title {
+  margin: 30px;
 }
