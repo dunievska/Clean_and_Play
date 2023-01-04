@@ -18,6 +18,23 @@ export class AllReservationsComponent implements OnInit {
       .subscribe((loadedRes) => {
         this.freeReservations = this.sortReservationsByDate(loadedRes);
       });
+    this.scheduleService.refreshReservationsRequired.subscribe(() => {
+      this.scheduleService
+        .getReservationsWithoutOwner()
+        .subscribe((loadedRes) => {
+          this.freeReservations = this.sortReservationsByDate(loadedRes);
+        });
+    });
+  }
+
+  onAdd(addedReservation: Reservation) {
+    addedReservation.owner = 1; // in future userId
+    addedReservation.hasOwner = true;
+    this.scheduleService.updateReservation(addedReservation).subscribe(() => {
+      this.freeReservations = this.freeReservations.filter(
+        (r) => r !== addedReservation
+      );
+    });
   }
 
   private sortReservationsByDate(res: Reservation[]) {

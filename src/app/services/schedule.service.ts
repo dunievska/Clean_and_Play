@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Reservation } from '../models/reservation';
-import { Observable } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +11,7 @@ export class ScheduleService {
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+  public refreshReservationsRequired = new Subject<void>();
 
   constructor(private http: HttpClient) {}
 
@@ -31,11 +32,17 @@ export class ScheduleService {
   }
 
   public updateReservation(reservation: Reservation): Observable<Reservation> {
-    return this.http.put<Reservation>(
-      this.url + '/' + reservation.id,
-      reservation,
-      this.httpOptions
-    );
+    return this.http
+      .put<Reservation>(
+        this.url + '/' + reservation.id,
+        reservation,
+        this.httpOptions
+      )
+      .pipe(
+        tap(() => {
+          this.refreshReservationsRequired.next();
+        })
+      );
   }
 
   public addReservation(reservation: Reservation): Observable<Reservation> {

@@ -16,16 +16,31 @@ export class UserReservationsComponent implements OnInit {
     this.scheduleService.getReservationByOwner(1).subscribe((loadedRes) => {
       this.userReservations = this.sortReservationsByDate(loadedRes);
     });
+    this.scheduleService.refreshReservationsRequired.subscribe(() => {
+      this.scheduleService.getReservationByOwner(1).subscribe((loadedRes) => {
+        this.userReservations = this.sortReservationsByDate(loadedRes);
+      });
+    });
   }
 
-  public getHowLong(reservation: Reservation) {
+  public onDelete(deletedReservation: Reservation): void {
+    deletedReservation.hasOwner = false;
+    deletedReservation.owner = null;
+    this.scheduleService.updateReservation(deletedReservation).subscribe(() => {
+      this.userReservations = this.userReservations.filter(
+        (r) => r !== deletedReservation
+      );
+    });
+  }
+
+  public getHowLong(reservation: Reservation): number {
     const time =
       new Date(reservation.end).getTime() -
       new Date(reservation.start).getTime();
     return Math.floor(time / 1000 / 60);
   }
 
-  private sortReservationsByDate(res: Reservation[]) {
+  private sortReservationsByDate(res: Reservation[]): Reservation[] {
     return res.sort(
       (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
     );
