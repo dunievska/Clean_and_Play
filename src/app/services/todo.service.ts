@@ -33,7 +33,7 @@ export class TodoService {
     });
   }
 
-  public addTask(task: Task) {
+  public addTask(task: Task): void {
     this.http
       .post<Task>('/api/tasks', task)
       .pipe(
@@ -44,7 +44,7 @@ export class TodoService {
       .subscribe();
   }
 
-  public updateTask(task: Task) {
+  public updateTask(task: Task): Observable<Task> {
     return this.http
       .put<Task>('/api/tasks/' + task.id, task, this.httpOptions)
       .pipe(
@@ -54,7 +54,7 @@ export class TodoService {
       );
   }
 
-  public deleteTaskById(id: number) {
+  public deleteTaskById(id: number): Observable<Task> {
     return this.http.delete<Task>(`/api/tasks/${id}`);
   }
 }

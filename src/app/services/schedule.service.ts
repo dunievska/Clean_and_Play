@@ -18,7 +18,7 @@ export class ScheduleService {
     return this.http.get<Reservation[]>(this.url);
   }
 
-  public updateReservation(reservation: Reservation) {
+  public updateReservation(reservation: Reservation):Observable<Reservation> {
     return this.http.put<Reservation>(
       this.url + '/' + reservation.id,
       reservation,
@@ -26,11 +26,11 @@ export class ScheduleService {
     );
   }
 
-  public addReservation(reservation: Reservation) {
+  public addReservation(reservation: Reservation):Observable<Reservation> {
     return this.http.post<Reservation>(this.url, reservation);
   }
 
-  public deleteReservation(reservation: Reservation) {
+  public deleteReservation(reservation: Reservation):Observable<Reservation> {
     return this.http.delete<Reservation>(`${this.url}/${reservation.id}`);
   }
 }
