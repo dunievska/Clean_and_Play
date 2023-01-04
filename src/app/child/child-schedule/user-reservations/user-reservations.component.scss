@@ -1,0 +1,30 @@
+.title {
+  margin: 40px 15px 15px 40px;
+}
+
+.res-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.res-item {
+  margin: 10px 10px 10px 40px;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+.res-minutes {
+  background-color: #ffb703;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}

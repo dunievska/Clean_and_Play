@@ -15,7 +15,7 @@ export class ReservationAddComponent {
     const start = this.setDateStart(form);
     const end = this.setDateEnd(form);
     const id = this.drawId();
-    const newReservation = new Reservation(id, start, end);
+    const newReservation = new Reservation(id, start, end, false, null);
     this.scheduleService.addReservation(newReservation).subscribe();
     form.reset();
   }

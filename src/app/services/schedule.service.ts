@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Reservation } from '../models/reservation';
 import { Observable } from 'rxjs';
 
@@ -18,7 +18,19 @@ export class ScheduleService {
     return this.http.get<Reservation[]>(this.url);
   }
 
-  public updateReservation(reservation: Reservation):Observable<Reservation> {
+  public getReservationsWithoutOwner(): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(this.url, {
+      params: new HttpParams().set('hasOwner', false),
+    });
+  }
+
+  public getReservationByOwner(ownerId: number): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(this.url, {
+      params: new HttpParams().set('owner', ownerId),
+    });
+  }
+
+  public updateReservation(reservation: Reservation): Observable<Reservation> {
     return this.http.put<Reservation>(
       this.url + '/' + reservation.id,
       reservation,
@@ -26,11 +38,11 @@ export class ScheduleService {
     );
   }
 
-  public addReservation(reservation: Reservation):Observable<Reservation> {
+  public addReservation(reservation: Reservation): Observable<Reservation> {
     return this.http.post<Reservation>(this.url, reservation);
   }
 
-  public deleteReservation(reservation: Reservation):Observable<Reservation> {
+  public deleteReservation(reservation: Reservation): Observable<Reservation> {
     return this.http.delete<Reservation>(`${this.url}/${reservation.id}`);
   }
 }

@@ -1,1 +1,13 @@
-<p>all-reservations works!</p>
+<div class="title">All available reservations</div>
+<mat-card class="res-item" *ngFor="let reservation of freeReservations">
+  <div class="res-details">
+    <div class="res-minutes" matTooltip="Minutes">
+      {{ getHowLong(reservation) }}
+    </div>
+    <div class="res-date">{{ reservation.start | date : "d LLLL HH:mm" }}</div>
+  </div>
+
+  <button mat-mini-fab>
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-card>
