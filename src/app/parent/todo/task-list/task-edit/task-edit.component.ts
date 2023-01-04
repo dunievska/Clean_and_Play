@@ -13,6 +13,7 @@ export class TaskEditComponent {
   @Input() index!: number;
   @Input() editModeArr: boolean[] = [];
   @Output() onModeChange = new EventEmitter<boolean[]>();
+  public pointsOptions: number[] = [10, 20, 30];
 
   constructor(private todoService: TodoService) {}
 

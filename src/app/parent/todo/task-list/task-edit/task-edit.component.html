@@ -5,11 +5,9 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Select points</mat-label>
-    <select name="points" matNativeControl ngModel required>
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="30">30</option>
-    </select>
+    <mat-select name="points" ngModel required>
+      <mat-option *ngFor="let points of pointsOptions">{{ points }}</mat-option>
+    </mat-select>
   </mat-form-field>
   <button mat-mini-fab color="accent" type="submit" [disabled]="!form.valid">
     <mat-icon>done</mat-icon>

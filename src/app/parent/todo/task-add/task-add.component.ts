@@ -10,6 +10,7 @@ import { TodoService } from 'src/app/services/todo.service';
   styleUrls: ['./task-add.component.scss'],
 })
 export class TaskAddComponent {
+  public pointsOptions: number[] = [10, 20, 30];
   constructor(private todoService: TodoService) {}
 
   public onSubmit(form: NgForm): void {
