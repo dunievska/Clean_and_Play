@@ -29,6 +29,9 @@ import { HeaderComponent } from './header/header.component';
 import { ScheduleComponent } from './parent/schedule/schedule.component';
 import { ReservationListComponent } from './parent/schedule/reservation-list/reservation-list.component';
 import { ReservationAddComponent } from './parent/schedule/reservation-add/reservation-add.component';
+import { ChildScheduleComponent } from './child/child-schedule/child-schedule.component';
+import { AllReservationsComponent } from './child/child-schedule/all-reservations/all-reservations.component';
+import { UserReservationsComponent } from './child/child-schedule/user-reservations/user-reservations.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { ReservationAddComponent } from './parent/schedule/reservation-add/reser
     ScheduleComponent,
     ReservationListComponent,
     ReservationAddComponent,
+    ChildScheduleComponent,
+    AllReservationsComponent,
+    UserReservationsComponent,
   ],
   imports: [
     BrowserModule,

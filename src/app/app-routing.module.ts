@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChildScheduleComponent } from './child/child-schedule/child-schedule.component';
 import { ChildTodoComponent } from './child/child-todo/child-todo.component';
 import { ChildComponent } from './child/child.component';
 import { HomeComponent } from './home/home.component';
@@ -14,10 +15,7 @@ const routes: Routes = [
     path: 'parent',
     component: ParentComponent,
     children: [
-      {
-        path: 'todo',
-        component: TodoComponent,
-      },
+      { path: 'todo', component: TodoComponent },
       { path: 'reservations', component: ScheduleComponent },
     ],
   },
@@ -25,10 +23,8 @@ const routes: Routes = [
     path: 'child',
     component: ChildComponent,
     children: [
-      {
-        path: 'todo',
-        component: ChildTodoComponent,
-      },
+      { path: 'todo', component: ChildTodoComponent },
+      { path: 'reservations', component: ChildScheduleComponent },
     ],
   },
   { path: '**', redirectTo: '/home' },
