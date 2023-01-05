@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Reservation } from 'src/app/models/reservation';
+import { User } from 'src/app/models/user.model';
 import { ScheduleService } from 'src/app/services/schedule.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-reservations',
@@ -9,10 +11,17 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 })
 export class UserReservationsComponent implements OnInit {
   public userReservations: Reservation[] = [];
+  public user!: User;
 
-  constructor(private scheduleService: ScheduleService) {}
+  constructor(
+    private scheduleService: ScheduleService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
+    this.userService.getUserById(1).subscribe((loadedUser: User) => {
+      this.user = loadedUser;
+    });
     this.scheduleService.getReservationByOwner(1).subscribe((loadedRes) => {
       this.userReservations = this.sortReservationsByDate(loadedRes);
     });
@@ -24,6 +33,8 @@ export class UserReservationsComponent implements OnInit {
   }
 
   public onDelete(deletedReservation: Reservation): void {
+    this.user.points = this.user.points + this.getHowLong(deletedReservation);
+    this.userService.updateUser(this.user).subscribe();
     deletedReservation.hasOwner = false;
     deletedReservation.owner = null;
     this.scheduleService.updateReservation(deletedReservation).subscribe(() => {

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Task } from 'src/app/models/task.model';
+import { User } from 'src/app/models/user.model';
 import { TodoService } from 'src/app/services/todo.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-tasks',
@@ -11,8 +13,12 @@ import { TodoService } from 'src/app/services/todo.service';
 export class UserTasksComponent implements OnInit {
   public completedTasks: Task[] = [];
   public notCompletedTasks: Task[] = [];
+  public user!: User;
 
-  constructor(private todoService: TodoService) {}
+  constructor(
+    private todoService: TodoService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.todoService.getTaskByOwner(1).subscribe((loadedTasks: Task[]) => {
@@ -26,6 +32,9 @@ export class UserTasksComponent implements OnInit {
         this.getCompletedTasks(loadedTasks);
         this.getNotCompletedTasks(loadedTasks);
       });
+    });
+    this.userService.getUserById(1).subscribe((loadedUser: User) => {
+      this.user = loadedUser;
     });
   }
 
@@ -47,6 +56,8 @@ export class UserTasksComponent implements OnInit {
         (t) => t !== completedTask
       );
     });
+    this.user.points = this.user.points + completedTask.points;
+    this.userService.updateUser(this.user).subscribe();
   }
 
   private getCompletedTasks(tasks: Task[]): void {

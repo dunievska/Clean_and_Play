@@ -69,5 +69,11 @@
       "hasOwner": false,
       "owner": null
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "points": 30
+    }
   ]
 }

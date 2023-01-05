@@ -32,6 +32,7 @@ import { ReservationAddComponent } from './parent/schedule/reservation-add/reser
 import { ChildScheduleComponent } from './child/child-schedule/child-schedule.component';
 import { AllReservationsComponent } from './child/child-schedule/all-reservations/all-reservations.component';
 import { UserReservationsComponent } from './child/child-schedule/user-reservations/user-reservations.component';
+import { ChildPointsComponent } from './child/child-points/child-points.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { UserReservationsComponent } from './child/child-schedule/user-reservati
     ChildScheduleComponent,
     AllReservationsComponent,
     UserReservationsComponent,
+    ChildPointsComponent,
   ],
   imports: [
     BrowserModule,

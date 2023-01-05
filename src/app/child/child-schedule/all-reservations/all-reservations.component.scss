@@ -28,3 +28,13 @@
   align-items: center;
   margin-bottom: 0;
 }
+
+.error {
+  margin: 40px;
+  display: flex;
+  gap: 30px;
+}
+
+.error-msg {
+  color: red;
+}
