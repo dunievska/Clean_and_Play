@@ -5,6 +5,9 @@
   class="reservation-item"
 >
   <mat-card-header class="reservation-details">
+    <div class="res-owner" *ngIf="reservation.hasOwner" matTooltip="Owner">
+      <mat-icon>face</mat-icon>
+    </div>
     <div class="res-minutes" matTooltip="Minutes">
       {{ getHowLong(reservation) }}
     </div>
