@@ -22,7 +22,7 @@ export class ReservationListComponent implements OnInit {
     this.scheduleService
       .getAllReservations()
       .subscribe((loadedRes: Reservation[]) => {
-        this.reservations = this.sortReservationsByDate(loadedRes);
+        this.reservations = loadedRes;
         this.restartEditMode();
       });
   }
@@ -54,12 +54,6 @@ export class ReservationListComponent implements OnInit {
     this.scheduleService.updateReservation(editedRes).subscribe();
     this.restartEditMode();
     form.reset();
-  }
-
-  private sortReservationsByDate(res: Reservation[]): Reservation[] {
-    return res.sort(
-      (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
-    );
   }
 
   private restartEditMode(): void {
