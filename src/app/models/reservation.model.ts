@@ -4,6 +4,6 @@ export class Reservation {
     public start: Date,
     public end: Date,
     public hasOwner: boolean,
-    public owner: number | null // in future ownerId
+    public owner: number | null
   ) {}
 }
