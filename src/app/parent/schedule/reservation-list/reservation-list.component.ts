@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Reservation } from 'src/app/models/reservation';
+import { Reservation } from 'src/app/models/reservation.model';
 import { ScheduleService } from 'src/app/services/schedule.service';
 
 @Component({
