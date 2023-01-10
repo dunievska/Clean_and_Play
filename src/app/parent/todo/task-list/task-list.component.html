@@ -1,14 +1,15 @@
 <div class="title">All tasks</div>
-<mat-card *ngFor="let task of tasks; let index = index" class="task-item">
-  <mat-card-content>
-    <mat-card-header class="task-details">
-      <div class="task-owner" *ngIf="task.hasOwner" matTooltip="Owner">
-        <mat-icon>face</mat-icon>
-      </div>
-      <div class="task-points" matTooltip="Points">{{ task.points }}</div>
-      <div class="task-name">{{ task.name }}</div>
-    </mat-card-header>
 
+<mat-card *ngFor="let task of tasks; let index = index" class="task-item">
+  <mat-card-header class="task-details">
+    <div class="task-owner" *ngIf="task.hasOwner" matTooltip="Owner">
+      <mat-icon>face</mat-icon>
+    </div>
+    <div class="task-points" matTooltip="Points">{{ task.points }}</div>
+    <div class="task-name">{{ task.name }}</div>
+  </mat-card-header>
+
+  <ng-template [ngIf]="!editModeArr[index]" [ngIfElse]="editing">
     <mat-card-actions align="end" class="buttons-container">
       <button
         mat-mini-fab
@@ -28,16 +29,16 @@
         <mat-icon>create</mat-icon>
       </button>
     </mat-card-actions>
+  </ng-template>
 
-    <div *ngIf="editModeArr[index]">
-      <app-task-edit
-        [selectedTask]="selectedTask"
-        [index]="index"
-        [editModeArr]="editModeArr"
-        (onModeChange)="changeMode($event)"
-      ></app-task-edit>
-    </div>
-  </mat-card-content>
+  <ng-template #editing>
+    <app-task-edit
+      [selectedTask]="selectedTask"
+      [index]="index"
+      [editModeArr]="editModeArr"
+      (onModeChange)="changeMode($event)"
+    ></app-task-edit>
+  </ng-template>
 </mat-card>
 
 <div class="title">Completed tasks</div>

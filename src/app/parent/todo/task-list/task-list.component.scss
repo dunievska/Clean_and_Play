@@ -9,6 +9,7 @@
 
 .task-details {
   gap: 10px;
+  align-items: center;
 }
 
 .task-name {
@@ -39,11 +40,6 @@
 
 .buttons-container {
   gap: 10px;
-}
-
-img {
-  height: 20px;
-  width: 20px;
 }
 
 .completed {
