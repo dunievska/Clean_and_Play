@@ -8,6 +8,7 @@ import { Task } from '../models/task.model';
   providedIn: 'root',
 })
 export class TodoService {
+  private url: string = '/api/tasks';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
@@ -16,28 +17,28 @@ export class TodoService {
   constructor(private http: HttpClient) {}
 
   public getAllTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>('/api/tasks');
+    return this.http.get<Task[]>(this.url);
   }
 
   public getTaskById(id: number): Observable<Task> {
-    return this.http.get<Task>(`/api/tasks/${id}`);
+    return this.http.get<Task>(`${this.url}/${id}`);
   }
 
   public getTasksWithoutOwner(): Observable<Task[]> {
-    return this.http.get<Task[]>(`/api/tasks`, {
+    return this.http.get<Task[]>(this.url, {
       params: new HttpParams().set('hasOwner', false),
     });
   }
 
   public getTaskByOwner(ownerId: number): Observable<Task[]> {
-    return this.http.get<Task[]>('api/tasks', {
+    return this.http.get<Task[]>(this.url, {
       params: new HttpParams().set('owner', ownerId),
     });
   }
 
   public addTask(task: Task): void {
     this.http
-      .post<Task>('/api/tasks', task)
+      .post<Task>(this.url, task)
       .pipe(
         tap(() => {
           this.refreshTasksRequired.next();
@@ -47,16 +48,14 @@ export class TodoService {
   }
 
   public updateTask(task: Task): Observable<Task> {
-    return this.http
-      .put<Task>('/api/tasks/' + task.id, task, this.httpOptions)
-      .pipe(
-        tap(() => {
-          this.refreshTasksRequired.next();
-        })
-      );
+    return this.http.put<Task>(this.url + task.id, task, this.httpOptions).pipe(
+      tap(() => {
+        this.refreshTasksRequired.next();
+      })
+    );
   }
 
   public deleteTaskById(id: number): Observable<Task> {
-    return this.http.delete<Task>(`/api/tasks/${id}`);
+    return this.http.delete<Task>(`${this.url}/${id}`);
   }
 }
