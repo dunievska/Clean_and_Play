@@ -18,13 +18,13 @@ export class TaskListComponent implements OnInit {
   constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
-    this.todoService.getAllTasks().subscribe((loadedTasks) => {
+    this.todoService.getAllTasks().subscribe((loadedTasks: Task[]) => {
       this.tasks = loadedTasks.filter((t) => !t.completed);
       this.completedTasks = loadedTasks.filter((t) => t.completed);
       this.restartEditMode();
     });
-    this.todoService.refreshTasksRequired.subscribe((response) => {
-      this.todoService.getAllTasks().subscribe((loadedTasks) => {
+    this.todoService.refreshTasksRequired.subscribe(() => {
+      this.todoService.getAllTasks().subscribe((loadedTasks: Task[]) => {
         this.tasks = loadedTasks.filter((t) => !t.completed);
         this.completedTasks = loadedTasks.filter((t) => t.completed);
         this.restartEditMode();
@@ -35,7 +35,7 @@ export class TaskListComponent implements OnInit {
   public onEdit(task: Task, index: number): void {
     this.restartEditMode();
     this.editModeArr[index] = true;
-    this.todoService.getTaskById(task.id).subscribe((loadedTask) => {
+    this.todoService.getTaskById(task.id).subscribe((loadedTask: Task) => {
       if (loadedTask) this.selectedTask = loadedTask;
     });
   }

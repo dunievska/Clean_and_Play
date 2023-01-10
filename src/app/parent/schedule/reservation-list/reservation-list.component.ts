@@ -15,34 +15,36 @@ export class ReservationListComponent implements OnInit {
   constructor(private scheduleService: ScheduleService) {}
 
   ngOnInit(): void {
-    this.scheduleService.getAllReservations().subscribe((loadedRes) => {
-      this.reservations = this.sortReservationsByDate(loadedRes);
-      this.restartEditMode();
-    });
+    this.scheduleService
+      .getAllReservations()
+      .subscribe((loadedRes: Reservation[]) => {
+        this.reservations = this.sortReservationsByDate(loadedRes);
+        this.restartEditMode();
+      });
   }
 
-  public getHowLong(reservation: Reservation) {
+  public getHowLong(reservation: Reservation): number {
     const time =
       new Date(reservation.end).getTime() -
       new Date(reservation.start).getTime();
     return Math.floor(time / 1000 / 60);
   }
 
-  public onDelete(deletedRes: Reservation) {
+  public onDelete(deletedRes: Reservation): void {
     this.scheduleService.deleteReservation(deletedRes).subscribe(() => {
       this.reservations = this.reservations.filter((r) => r !== deletedRes);
     });
   }
 
-  public onEdit(index: number) {
+  public onEdit(index: number): void {
     this.editModeArr[index] = true;
   }
 
-  public onCancel() {
+  public onCancel(): void {
     this.restartEditMode();
   }
 
-  public onSubmit(editedRes: Reservation, form: NgForm) {
+  public onSubmit(editedRes: Reservation, form: NgForm): void {
     editedRes.start = this.setDateStart(form);
     editedRes.end = this.setDateEnd(form);
     this.scheduleService.updateReservation(editedRes).subscribe();
@@ -50,7 +52,7 @@ export class ReservationListComponent implements OnInit {
     form.reset();
   }
 
-  private sortReservationsByDate(res: Reservation[]) {
+  private sortReservationsByDate(res: Reservation[]): Reservation[] {
     return res.sort(
       (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
     );
@@ -62,14 +64,14 @@ export class ReservationListComponent implements OnInit {
     ).fill(false);
   }
 
-  private setDateStart(form: NgForm) {
+  private setDateStart(form: NgForm): Date {
     const startHour = form.value.start;
     const hour = startHour.split(':');
     const day = form.value.day;
     return new Date(day.setHours(...hour));
   }
 
-  private setDateEnd(form: NgForm) {
+  private setDateEnd(form: NgForm): Date {
     const howLong = +form.value.time;
     const startHour = form.value.start;
     const hour = startHour.split(':');

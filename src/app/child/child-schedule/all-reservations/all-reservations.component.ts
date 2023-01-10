@@ -37,7 +37,7 @@ export class AllReservationsComponent implements OnInit {
     });
   }
 
-  onAdd(addedReservation: Reservation) {
+  onAdd(addedReservation: Reservation): void {
     if (this.getHowLong(addedReservation) <= this.user.points) {
       addedReservation.owner = this.user.id;
       addedReservation.hasOwner = true;
@@ -53,17 +53,17 @@ export class AllReservationsComponent implements OnInit {
     }
   }
 
-  public onErrorMsg() {
+  public onErrorMsg(): void {
     this.error = false;
   }
 
-  public getHowLong(reservation: Reservation) {
+  public getHowLong(reservation: Reservation): number {
     const time =
       new Date(reservation.end).getTime() -
       new Date(reservation.start).getTime();
     return Math.floor(time / 1000 / 60);
   }
-  private sortReservationsByDate(res: Reservation[]) {
+  private sortReservationsByDate(res: Reservation[]): Reservation[] {
     return res.sort(
       (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
     );

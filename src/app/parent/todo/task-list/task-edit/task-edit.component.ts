@@ -33,7 +33,7 @@ export class TaskEditComponent {
     this.onModeChange.emit(this.editModeArr);
   }
 
-  public onCancel() {
+  public onCancel(): void {
     this.editModeArr[this.index] = false;
   }
 }

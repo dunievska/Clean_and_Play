@@ -7,7 +7,7 @@ import { Observable, Subject, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class ScheduleService {
-  private url = 'api/reservations';
+  private url: string = 'api/reservations';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };

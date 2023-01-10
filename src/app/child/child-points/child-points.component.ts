@@ -13,11 +13,11 @@ export class ChildPointsComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getUserById(1).subscribe((loadedUser) => {
+    this.userService.getUserById(1).subscribe((loadedUser: User) => {
       this.user = loadedUser;
     });
     this.userService.refeshUserRequired.subscribe(() =>
-      this.userService.getUserById(1).subscribe((loadedUser) => {
+      this.userService.getUserById(1).subscribe((loadedUser: User) => {
         this.user = loadedUser;
       })
     );

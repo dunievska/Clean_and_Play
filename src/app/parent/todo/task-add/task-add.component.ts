@@ -26,7 +26,7 @@ export class TaskAddComponent {
     form.reset();
   }
 
-  private drawId() {
+  private drawId(): number {
     return Math.floor(Math.random() * 100000000);
   }
 }

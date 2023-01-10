@@ -22,13 +22,17 @@ export class UserReservationsComponent implements OnInit {
     this.userService.getUserById(1).subscribe((loadedUser: User) => {
       this.user = loadedUser;
     });
-    this.scheduleService.getReservationByOwner(1).subscribe((loadedRes) => {
-      this.userReservations = this.sortReservationsByDate(loadedRes);
-    });
-    this.scheduleService.refreshReservationsRequired.subscribe(() => {
-      this.scheduleService.getReservationByOwner(1).subscribe((loadedRes) => {
+    this.scheduleService
+      .getReservationByOwner(1)
+      .subscribe((loadedRes: Reservation[]) => {
         this.userReservations = this.sortReservationsByDate(loadedRes);
       });
+    this.scheduleService.refreshReservationsRequired.subscribe(() => {
+      this.scheduleService
+        .getReservationByOwner(1)
+        .subscribe((loadedRes: Reservation[]) => {
+          this.userReservations = this.sortReservationsByDate(loadedRes);
+        });
     });
   }
 

@@ -11,7 +11,7 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 export class ReservationAddComponent {
   constructor(private scheduleService: ScheduleService) {}
 
-  public onSubmit(form: NgForm) {
+  public onSubmit(form: NgForm): void {
     const start = this.setDateStart(form);
     const end = this.setDateEnd(form);
     const id = this.drawId();
@@ -20,21 +20,21 @@ export class ReservationAddComponent {
     form.reset();
   }
 
-  private setDateStart(form: NgForm) {
+  private setDateStart(form: NgForm): Date {
     const startHour = form.value.start;
     const hour = startHour.split(':');
     const day = form.value.day;
     return new Date(day.setHours(...hour));
   }
 
-  private setDateEnd(form: NgForm) {
+  private setDateEnd(form: NgForm): Date {
     const howLong = +form.value.time;
     const startHour = form.value.start;
     const hour = startHour.split(':');
     return new Date(form.value.day.setHours(...hour, howLong * 60));
   }
 
-  private drawId() {
+  private drawId(): number {
     return Math.floor(Math.random() * 100000000);
   }
 }
