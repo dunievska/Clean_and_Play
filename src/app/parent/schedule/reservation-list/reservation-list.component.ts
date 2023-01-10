@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Reservation } from 'src/app/models/reservation.model';
+import { DateService } from 'src/app/services/date.service';
 import { ScheduleService } from 'src/app/services/schedule.service';
 
 @Component({
@@ -12,7 +13,10 @@ export class ReservationListComponent implements OnInit {
   public reservations: Reservation[] = [];
   public editModeArr: boolean[] = [];
 
-  constructor(private scheduleService: ScheduleService) {}
+  constructor(
+    private scheduleService: ScheduleService,
+    private dateService: DateService
+  ) {}
 
   ngOnInit(): void {
     this.scheduleService
@@ -45,8 +49,8 @@ export class ReservationListComponent implements OnInit {
   }
 
   public onSubmit(editedRes: Reservation, form: NgForm): void {
-    editedRes.start = this.setDateStart(form);
-    editedRes.end = this.setDateEnd(form);
+    editedRes.start = this.dateService.setDateStart(form);
+    editedRes.end = this.dateService.setDateEnd(form);
     this.scheduleService.updateReservation(editedRes).subscribe();
     this.restartEditMode();
     form.reset();
@@ -62,19 +66,5 @@ export class ReservationListComponent implements OnInit {
     this.editModeArr = this.editModeArr = new Array(
       this.reservations.length
     ).fill(false);
-  }
-
-  private setDateStart(form: NgForm): Date {
-    const startHour = form.value.start;
-    const hour = startHour.split(':');
-    const day = form.value.day;
-    return new Date(day.setHours(...hour));
-  }
-
-  private setDateEnd(form: NgForm): Date {
-    const howLong = +form.value.time;
-    const startHour = form.value.start;
-    const hour = startHour.split(':');
-    return new Date(form.value.day.setHours(...hour, howLong * 60));
   }
 }

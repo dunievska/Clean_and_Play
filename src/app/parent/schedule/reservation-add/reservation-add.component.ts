@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Reservation } from 'src/app/models/reservation.model';
+import { DateService } from 'src/app/services/date.service';
 import { ScheduleService } from 'src/app/services/schedule.service';
 
 @Component({
@@ -9,29 +10,18 @@ import { ScheduleService } from 'src/app/services/schedule.service';
   styleUrls: ['./reservation-add.component.scss'],
 })
 export class ReservationAddComponent {
-  constructor(private scheduleService: ScheduleService) {}
+  constructor(
+    private scheduleService: ScheduleService,
+    private dateService: DateService
+  ) {}
 
   public onSubmit(form: NgForm): void {
-    const start = this.setDateStart(form);
-    const end = this.setDateEnd(form);
+    const start = this.dateService.setDateStart(form);
+    const end = this.dateService.setDateEnd(form);
     const id = this.drawId();
     const newReservation = new Reservation(id, start, end, false, null);
     this.scheduleService.addReservation(newReservation).subscribe();
     form.reset();
-  }
-
-  private setDateStart(form: NgForm): Date {
-    const startHour = form.value.start;
-    const hour = startHour.split(':');
-    const day = form.value.day;
-    return new Date(day.setHours(...hour));
-  }
-
-  private setDateEnd(form: NgForm): Date {
-    const howLong = +form.value.time;
-    const startHour = form.value.start;
-    const hour = startHour.split(':');
-    return new Date(form.value.day.setHours(...hour, howLong * 60));
   }
 
   private drawId(): number {
