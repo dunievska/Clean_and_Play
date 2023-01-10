@@ -24,7 +24,9 @@ export class TodoService {
   }
 
   public getTasksWithoutOwner(): Observable<Task[]> {
-    return this.http.get<Task[]>(`/api/tasks?hasOwner=false`);
+    return this.http.get<Task[]>(`/api/tasks`, {
+      params: new HttpParams().set('hasOwner', false),
+    });
   }
 
   public getTaskByOwner(ownerId: number): Observable<Task[]> {
