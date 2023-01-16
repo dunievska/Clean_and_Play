@@ -26,23 +26,27 @@ export class ScheduleService {
   }
 
   public getReservationsWithoutOwner(): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(this.url, {
-      params: new HttpParams().set('hasOwner', false),
-    }).pipe(
-      map((reservations: Reservation[]) =>
-        this.sortReservationsByDate(reservations)
-      )
-    );
+    return this.http
+      .get<Reservation[]>(this.url, {
+        params: new HttpParams().set('hasOwner', false),
+      })
+      .pipe(
+        map((reservations: Reservation[]) =>
+          this.sortReservationsByDate(reservations)
+        )
+      );
   }
 
   public getReservationByOwner(ownerId: number): Observable<Reservation[]> {
-    return this.http.get<Reservation[]>(this.url, {
-      params: new HttpParams().set('owner', ownerId),
-    }).pipe(
-      map((reservations: Reservation[]) =>
-        this.sortReservationsByDate(reservations)
-      )
-    );
+    return this.http
+      .get<Reservation[]>(this.url, {
+        params: new HttpParams().set('owner', ownerId),
+      })
+      .pipe(
+        map((reservations: Reservation[]) =>
+          this.sortReservationsByDate(reservations)
+        )
+      );
   }
 
   public updateReservation(reservation: Reservation): Observable<Reservation> {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/models/task.model';
+import { ErrorService } from 'src/app/services/error.service';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
@@ -10,11 +11,17 @@ import { TodoService } from 'src/app/services/todo.service';
 export class AllTasksComponent implements OnInit {
   public freeTasks: Task[] = [];
 
-  constructor(private todoService: TodoService) {}
+  constructor(
+    private todoService: TodoService,
+    private errorService: ErrorService
+  ) {}
 
   ngOnInit(): void {
-    this.todoService.getTasksWithoutOwner().subscribe((loadedTasks) => {
-      this.freeTasks = loadedTasks;
+    this.todoService.getTasksWithoutOwner().subscribe({
+      next: (loadedTasks) => {
+        this.freeTasks = loadedTasks;
+      },
+      error: () => this.errorService.displayAlertMessage(),
     });
     this.todoService.refreshTasksRequired.subscribe(() => {
       this.todoService.getTasksWithoutOwner().subscribe((loadedTasks) => {

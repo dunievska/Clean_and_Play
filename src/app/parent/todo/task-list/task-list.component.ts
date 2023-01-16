@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { TodoService } from 'src/app/services/todo.service';
 import { Task } from 'src/app/models/task.model';
+import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
   selector: 'app-task-list',
@@ -15,13 +16,19 @@ export class TaskListComponent implements OnInit {
   public selectedTaskId!: number;
   public completedTasks: Task[] = [];
 
-  constructor(private todoService: TodoService) {}
+  constructor(
+    private todoService: TodoService,
+    private errorService: ErrorService
+  ) {}
 
   ngOnInit(): void {
-    this.todoService.getAllTasks().subscribe((loadedTasks: Task[]) => {
-      this.tasks = loadedTasks.filter((t) => !t.completed);
-      this.completedTasks = loadedTasks.filter((t) => t.completed);
-      this.restartEditMode();
+    this.todoService.getAllTasks().subscribe({
+      next: (loadedTasks: Task[]) => {
+        this.tasks = loadedTasks.filter((t) => !t.completed);
+        this.completedTasks = loadedTasks.filter((t) => t.completed);
+        this.restartEditMode();
+      },
+      error: () => this.errorService.displayAlertMessage(),
     });
     this.todoService.refreshTasksRequired.subscribe(() => {
       this.todoService.getAllTasks().subscribe((loadedTasks: Task[]) => {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Reservation } from 'src/app/models/reservation.model';
 import { DateService } from 'src/app/services/date.service';
+import { ErrorService } from 'src/app/services/error.service';
 import { ScheduleService } from 'src/app/services/schedule.service';
 
 @Component({
@@ -15,16 +16,18 @@ export class ReservationListComponent implements OnInit {
 
   constructor(
     private scheduleService: ScheduleService,
-    private dateService: DateService
+    private dateService: DateService,
+    private errorService: ErrorService
   ) {}
 
   ngOnInit(): void {
-    this.scheduleService
-      .getAllReservations()
-      .subscribe((loadedRes: Reservation[]) => {
+    this.scheduleService.getAllReservations().subscribe({
+      next: (loadedRes: Reservation[]) => {
         this.reservations = loadedRes;
         this.restartEditMode();
-      });
+      },
+      error: () => this.errorService.displayAlertMessage(),
+    });
   }
 
   public getHowLong(reservation: Reservation): number {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Reservation } from 'src/app/models/reservation.model';
 import { User } from 'src/app/models/user.model';
+import { ErrorService } from 'src/app/services/error.service';
 import { ScheduleService } from 'src/app/services/schedule.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,19 +13,20 @@ import { UserService } from 'src/app/services/user.service';
 export class AllReservationsComponent implements OnInit {
   public freeReservations: Reservation[] = [];
   public user!: User;
-  public error: boolean = false;
 
   constructor(
     private scheduleService: ScheduleService,
-    private userService: UserService
+    private userService: UserService,
+    private errorService: ErrorService
   ) {}
 
   ngOnInit(): void {
-    this.scheduleService
-      .getReservationsWithoutOwner()
-      .subscribe((loadedRes) => {
+    this.scheduleService.getReservationsWithoutOwner().subscribe({
+      next: (loadedRes) => {
         this.freeReservations = loadedRes;
-      });
+      },
+      error: () => this.errorService.displayAlertMessage(),
+    });
     this.scheduleService.refreshReservationsRequired.subscribe(() => {
       this.scheduleService
         .getReservationsWithoutOwner()
@@ -49,12 +51,8 @@ export class AllReservationsComponent implements OnInit {
       this.user.points = this.user.points - this.getHowLong(addedReservation);
       this.userService.updateUser(this.user).subscribe();
     } else {
-      this.error = true;
+      this.errorService.displayAlertMessage(`You don't have enough points`);
     }
-  }
-
-  public onErrorMsg(): void {
-    this.error = false;
   }
 
   public getHowLong(reservation: Reservation): number {

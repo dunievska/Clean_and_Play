@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Task } from 'src/app/models/task.model';
 import { User } from 'src/app/models/user.model';
+import { ErrorService } from 'src/app/services/error.service';
 import { TodoService } from 'src/app/services/todo.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -17,14 +18,18 @@ export class UserTasksComponent implements OnInit {
 
   constructor(
     private todoService: TodoService,
-    private userService: UserService
+    private userService: UserService,
+    private errorService: ErrorService
   ) {}
 
   ngOnInit(): void {
-    this.todoService.getTaskByOwner(1).subscribe((loadedTasks: Task[]) => {
-      // in future add owner id, now is 1
-      this.getCompletedTasks(loadedTasks);
-      this.getNotCompletedTasks(loadedTasks);
+    this.todoService.getTaskByOwner(1).subscribe({
+      next: (loadedTasks: Task[]) => {
+        // in future add owner id, now is 1
+        this.getCompletedTasks(loadedTasks);
+        this.getNotCompletedTasks(loadedTasks);
+      },
+      error: () => this.errorService.displayAlertMessage(),
     });
     this.todoService.refreshTasksRequired.subscribe(() => {
       this.todoService.getTaskByOwner(1).subscribe((loadedTasks: Task[]) => {
