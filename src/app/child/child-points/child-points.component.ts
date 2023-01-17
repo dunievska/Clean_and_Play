@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./child-points.component.scss'],
 })
 export class ChildPointsComponent implements OnInit {
-  public user!: User;
+  public user?: User;
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
