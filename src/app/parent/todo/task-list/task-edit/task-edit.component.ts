@@ -31,6 +31,7 @@ export class TaskEditComponent {
     this.todoService.updateTask(updateTask).subscribe();
     this.editModeArr[this.index] = false;
     this.onModeChange.emit(this.editModeArr);
+    form.resetForm();
   }
 
   public onCancel(): void {

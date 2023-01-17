@@ -23,7 +23,7 @@ export class TaskAddComponent {
       null
     );
     this.todoService.addTask(newTask);
-    form.reset();
+    form.resetForm();
   }
 
   private drawId(): number {
