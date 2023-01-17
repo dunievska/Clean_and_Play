@@ -28,6 +28,14 @@ export class ReservationListComponent implements OnInit {
       },
       error: () => this.errorService.displayAlertMessage(),
     });
+    this.scheduleService.refreshReservationsRequired.subscribe(() => {
+      this.scheduleService
+        .getAllReservations()
+        .subscribe((loadedRes: Reservation[]) => {
+          this.reservations = loadedRes;
+          this.restartEditMode();
+        });
+    });
   }
 
   public getHowLong(reservation: Reservation): number {
@@ -56,7 +64,7 @@ export class ReservationListComponent implements OnInit {
     editedRes.end = this.dateService.setDateEnd(form);
     this.scheduleService.updateReservation(editedRes).subscribe();
     this.restartEditMode();
-    form.reset();
+    form.resetForm();
   }
 
   private restartEditMode(): void {

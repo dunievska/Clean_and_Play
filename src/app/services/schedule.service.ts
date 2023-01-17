@@ -64,11 +64,19 @@ export class ScheduleService {
   }
 
   public addReservation(reservation: Reservation): Observable<Reservation> {
-    return this.http.post<Reservation>(this.url, reservation);
+    return this.http.post<Reservation>(this.url, reservation).pipe(
+      tap(() => {
+        this.refreshReservationsRequired.next();
+      })
+    );
   }
 
   public deleteReservation(reservation: Reservation): Observable<Reservation> {
-    return this.http.delete<Reservation>(`${this.url}/${reservation.id}`);
+    return this.http.delete<Reservation>(`${this.url}/${reservation.id}`).pipe(
+      tap(() => {
+        this.refreshReservationsRequired.next();
+      })
+    );
   }
 
   private sortReservationsByDate(res: Reservation[]): Reservation[] {
