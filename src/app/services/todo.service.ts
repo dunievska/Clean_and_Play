@@ -48,11 +48,13 @@ export class TodoService {
   }
 
   public updateTask(task: Task): Observable<Task> {
-    return this.http.put<Task>(this.url + task.id, task, this.httpOptions).pipe(
-      tap(() => {
-        this.refreshTasksRequired.next();
-      })
-    );
+    return this.http
+      .put<Task>(this.url + '/' + task.id, task, this.httpOptions)
+      .pipe(
+        tap(() => {
+          this.refreshTasksRequired.next();
+        })
+      );
   }
 
   public deleteTaskById(id: number): Observable<Task> {
