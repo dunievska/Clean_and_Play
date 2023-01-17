@@ -1,12 +1,14 @@
 <form class="edit-form" (ngSubmit)="onSubmit(form)" #form="ngForm">
   <mat-form-field class="rename-input">
     <mat-label>Rename your task</mat-label>
-    <input matInput name="name" ngModel required />
+    <input matInput name="name" ngModel required autocomplete="off" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Select points</mat-label>
     <mat-select name="points" ngModel required>
-      <mat-option *ngFor="let points of pointsOptions">{{ points }}</mat-option>
+      <mat-option *ngFor="let points of pointsOptions" [value]="points">
+        {{ points }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
   <button mat-mini-fab color="accent" type="submit" [disabled]="!form.valid">
