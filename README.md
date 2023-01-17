@@ -6,8 +6,8 @@ Clean and Play is an application for families that helps to manage household cho
 
 ## **Technologies**
 
-- Angular: Routing, Services, HttpClient, NgForm, Observable, Subject, Input, Outpu, ngFor, ngIf
-- Angular Material: Card, Button, Input, Datepicker, Icon
+- Angular: Routing, Services, HttpClient, NgForm, Observable, Subject, Input, Output, ngFor, ngIf
+- Angular Material: Card, Button, Input, Datepicker, Icon, Tooltip
 - json-server npm
 
 ## **Features**
@@ -22,15 +22,18 @@ Two types of account:
 - add a new reservation to play computer games
 - see all bookings with details
 
+![Parent component](src/assets/gif/parent.gif)
+
 2. **Child** account feature:
 
 - see tasks that you can add to your to-do list
 - see the list with tasks to be done
 - add, delete and mark as done
+- add or delete computer reservations
+- see own bookings with details
+- see points to use
 
-## **Next features**
-
-- computer reservations booked by children
+![Child component](src/assets/gif/child.gif)
 
 ## **Run json-sever**
 
