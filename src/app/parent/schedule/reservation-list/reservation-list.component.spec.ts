@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReservationListComponent } from './reservation-list.component';
@@ -8,9 +9,9 @@ describe('ReservationListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReservationListComponent ]
-    })
-    .compileComponents();
+      declarations: [ReservationListComponent],
+      imports: [HttpClientTestingModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ReservationListComponent);
     component = fixture.componentInstance;
