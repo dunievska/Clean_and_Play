@@ -40,7 +40,9 @@ export class UserReservationsComponent implements OnInit {
   }
 
   public onDelete(deletedReservation: Reservation): void {
-    this.user.points = this.user.points + this.getHowLong(deletedReservation);
+    if (this.user.points)
+      this.user.points =
+        this.user?.points + this.getHowLong(deletedReservation);
     this.userService.updateUser(this.user).subscribe();
     deletedReservation.hasOwner = false;
     deletedReservation.owner = null;

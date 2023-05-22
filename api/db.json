@@ -72,8 +72,18 @@
   ],
   "users": [
     {
-      "id": 1,
-      "points": 30
+      "id": 92467918,
+      "email": "child@mail.com",
+      "password": "1234",
+      "points": 30,
+      "type": "child"
+    },
+    {
+      "id": 92467919,
+      "email": "parent@mail.com",
+      "password": "1234",
+      "points": 0,
+      "type": "parent"
     }
   ]
 }

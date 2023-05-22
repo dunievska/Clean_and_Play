@@ -1,0 +1,29 @@
+.container {
+  margin: 150px auto;
+  width: 475px;
+  align-items: center;
+  gap: 35px;
+  padding: 20px;
+
+  .forms {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+
+    button {
+      width: 100%;
+    }
+
+    .divider {
+      color: #c4c4c4;
+    }
+  }
+}

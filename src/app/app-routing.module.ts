@@ -7,10 +7,14 @@ import { HomeComponent } from './home/home.component';
 import { ParentComponent } from './parent/parent.component';
 import { ScheduleComponent } from './parent/schedule/schedule.component';
 import { TodoComponent } from './parent/todo/todo.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginPageComponent },
+
+  { path: 'home', component: AuthComponent },
   {
     path: 'parent',
     component: ParentComponent,

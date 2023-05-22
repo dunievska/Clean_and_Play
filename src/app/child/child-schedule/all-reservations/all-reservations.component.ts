@@ -40,7 +40,7 @@ export class AllReservationsComponent implements OnInit {
   }
 
   onAdd(addedReservation: Reservation): void {
-    if (this.getHowLong(addedReservation) <= this.user.points) {
+    if (this.user.points && this.getHowLong(addedReservation) <= this.user.points) {
       addedReservation.owner = this.user.id;
       addedReservation.hasOwner = true;
       this.scheduleService.updateReservation(addedReservation).subscribe(() => {

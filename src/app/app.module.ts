@@ -12,6 +12,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +36,8 @@ import { ChildScheduleComponent } from './child/child-schedule/child-schedule.co
 import { AllReservationsComponent } from './child/child-schedule/all-reservations/all-reservations.component';
 import { UserReservationsComponent } from './child/child-schedule/user-reservations/user-reservations.component';
 import { ChildPointsComponent } from './child/child-points/child-points.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +60,8 @@ import { ChildPointsComponent } from './child/child-points/child-points.componen
     AllReservationsComponent,
     UserReservationsComponent,
     ChildPointsComponent,
+    LoginPageComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +77,9 @@ import { ChildPointsComponent } from './child/child-points/child-points.componen
     MatNativeDateModule,
     MatIconModule,
     MatSelectModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
