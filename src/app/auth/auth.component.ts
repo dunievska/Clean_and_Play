@@ -13,8 +13,8 @@ export class AuthComponent {
   ngOnInit(): void {
     if (this.userService.isLoggedIn && this.userService.currentUser != null) {
       this.userService?.currentUser.type === 'parent'
-        ? this.router.navigate(['/parent'])
-        : this.router.navigate(['/child']);
+        ? this.router.navigate(['/parent/todo'])
+        : this.router.navigate(['/child/todo']);
     } else {
       this.router.navigate(['/login']);
     }

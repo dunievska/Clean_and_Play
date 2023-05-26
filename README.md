@@ -1,5 +1,17 @@
 # **Clean And Play**
 
+### Parent account:
+
+#### login: parent@mail.com
+
+#### password: 1234
+
+### Children account:
+
+#### login: child@mail.com
+
+#### password: 1234
+
 ## **About**
 
 Clean and Play is an application for families that helps to manage household chores and time spent on the computer.
