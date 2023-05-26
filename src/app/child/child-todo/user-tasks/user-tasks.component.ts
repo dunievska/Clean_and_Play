@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UserTasksComponent implements OnInit {
   public completedTasks: Task[] = [];
   public notCompletedTasks: Task[] = [];
-  public user!: User;
+  public user: User | null = null;
 
   constructor(
     private todoService: TodoService,
@@ -23,23 +23,26 @@ export class UserTasksComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.todoService.getTaskByOwner(1).subscribe({
-      next: (loadedTasks: Task[]) => {
-        // in future add owner id, now is 1
-        this.getCompletedTasks(loadedTasks);
-        this.getNotCompletedTasks(loadedTasks);
-      },
-      error: () => this.errorService.displayAlertMessage(),
+    this.user = this.userService.currentUser;
+    this.userService.refeshUserRequired.subscribe(() => {
+      this.user = this.userService.currentUser;
     });
-    this.todoService.refreshTasksRequired.subscribe(() => {
-      this.todoService.getTaskByOwner(1).subscribe((loadedTasks: Task[]) => {
-        // in future add owner id, now is 1
-        this.getCompletedTasks(loadedTasks);
-        this.getNotCompletedTasks(loadedTasks);
+    this.user &&
+      this.todoService.getTaskByOwner(this.user.id).subscribe({
+        next: (loadedTasks: Task[]) => {
+          this.getCompletedTasks(loadedTasks);
+          this.getNotCompletedTasks(loadedTasks);
+        },
+        error: () => this.errorService.displayAlertMessage(),
       });
-    });
-    this.userService.getUserById(1).subscribe((loadedUser: User) => {
-      this.user = loadedUser;
+    this.todoService.refreshTasksRequired.subscribe(() => {
+      this.user &&
+        this.todoService
+          .getTaskByOwner(this.user.id)
+          .subscribe((loadedTasks: Task[]) => {
+            this.getCompletedTasks(loadedTasks);
+            this.getNotCompletedTasks(loadedTasks);
+          });
     });
   }
 
@@ -61,8 +64,10 @@ export class UserTasksComponent implements OnInit {
         (t) => t !== completedTask
       );
     });
-    this.user.points = this.user.points + completedTask.points;
-    this.userService.updateUser(this.user).subscribe();
+    if (this.user) {
+      this.user.points = this.user.points + completedTask.points;
+      this.userService.updateUser(this.user).subscribe();
+    }
   }
 
   private getCompletedTasks(tasks: Task[]): void {

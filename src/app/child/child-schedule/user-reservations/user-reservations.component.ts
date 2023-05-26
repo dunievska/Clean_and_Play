@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserReservationsComponent implements OnInit {
   public userReservations: Reservation[] = [];
-  public user!: User;
+  public user: User | null = null;
 
   constructor(
     private scheduleService: ScheduleService,
@@ -21,29 +21,32 @@ export class UserReservationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userService.getUserById(1).subscribe((loadedUser: User) => {
-      this.user = loadedUser;
+    this.user = this.userService.currentUser;
+    this.userService.refeshUserRequired.subscribe(() => {
+      this.user = this.userService.currentUser;
     });
-    this.scheduleService.getReservationByOwner(1).subscribe({
-      next: (loadedRes: Reservation[]) => {
-        this.userReservations = loadedRes;
-      },
-      error: () => this.errorService.displayAlertMessage(),
-    });
-    this.scheduleService.refreshReservationsRequired.subscribe(() => {
-      this.scheduleService
-        .getReservationByOwner(1)
-        .subscribe((loadedRes: Reservation[]) => {
+    this.user &&
+      this.scheduleService.getReservationByOwner(this.user.id).subscribe({
+        next: (loadedRes: Reservation[]) => {
           this.userReservations = loadedRes;
-        });
+        },
+        error: () => this.errorService.displayAlertMessage(),
+      });
+    this.scheduleService.refreshReservationsRequired.subscribe(() => {
+      this.user &&
+        this.scheduleService
+          .getReservationByOwner(this.user.id)
+          .subscribe((loadedRes: Reservation[]) => {
+            this.userReservations = loadedRes;
+          });
     });
   }
 
   public onDelete(deletedReservation: Reservation): void {
-    if (this.user.points)
+    if (this.user?.points)
       this.user.points =
         this.user?.points + this.getHowLong(deletedReservation);
-    this.userService.updateUser(this.user).subscribe();
+    this.user && this.userService.updateUser(this.user).subscribe();
     deletedReservation.hasOwner = false;
     deletedReservation.owner = null;
     this.scheduleService.updateReservation(deletedReservation).subscribe(() => {

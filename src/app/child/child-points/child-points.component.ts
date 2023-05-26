@@ -14,10 +14,8 @@ export class ChildPointsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.currentUser;
+    this.userService.refeshUserRequired.subscribe(() => {
+      this.user = this.userService.currentUser;
+    });
   }
-  // this.userService.refeshUserRequired.subscribe(() =>
-  //   this.userService.getUserById(1).subscribe((loadedUser: User) => {
-  //     this.user = loadedUser;
-  //   })
-  // );
 }
