@@ -9,17 +9,13 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./child-points.component.scss'],
 })
 export class ChildPointsComponent implements OnInit {
-  public user?: User;
+  public user: User | null = null;
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getUserById(1).subscribe((loadedUser: User) => {
-      this.user = loadedUser;
+    this.user = this.userService.currentUser;
+    this.userService.refeshUserRequired.subscribe(() => {
+      this.user = this.userService.currentUser;
     });
-    this.userService.refeshUserRequired.subscribe(() =>
-      this.userService.getUserById(1).subscribe((loadedUser: User) => {
-        this.user = loadedUser;
-      })
-    );
   }
 }

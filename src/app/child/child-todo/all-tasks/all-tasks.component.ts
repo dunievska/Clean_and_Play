@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/models/task.model';
 import { ErrorService } from 'src/app/services/error.service';
 import { TodoService } from 'src/app/services/todo.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-all-tasks',
@@ -13,7 +14,8 @@ export class AllTasksComponent implements OnInit {
 
   constructor(
     private todoService: TodoService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -31,8 +33,12 @@ export class AllTasksComponent implements OnInit {
   }
 
   public onAdd(addedTask: Task) {
-    addedTask.hasOwner = true;
-    addedTask.owner = 1; // in future dynamically add owner id
+    addedTask = {
+      ...addedTask,
+      hasOwner: true,
+      owner: this.userService.currentUser && this.userService.currentUser.id,
+    };
+
     this.todoService.updateTask(addedTask).subscribe(() => {
       this.freeTasks = this.freeTasks.filter((f) => f !== addedTask);
     });

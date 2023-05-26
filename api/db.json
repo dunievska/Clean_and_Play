@@ -3,7 +3,7 @@
     {
       "id": 74860039,
       "name": "Wash the dishes",
-      "completed": false,
+      "completed": true,
       "points": 20,
       "hasOwner": false,
       "owner": null
@@ -11,10 +11,10 @@
     {
       "id": 59018877,
       "name": "Take out the garbage",
-      "completed": false,
+      "completed": true,
       "points": 20,
-      "hasOwner": false,
-      "owner": null
+      "hasOwner": true,
+      "owner": 92467918
     },
     {
       "id": 43643488,
@@ -22,15 +22,15 @@
       "completed": false,
       "points": 10,
       "hasOwner": true,
-      "owner": 1
+      "owner": 92467918
     },
     {
       "id": 23185484,
       "name": "Take the dog for a walk",
       "completed": false,
       "points": 30,
-      "hasOwner": true,
-      "owner": 1
+      "hasOwner": false,
+      "owner": null
     }
   ],
   "reservations": [
@@ -46,7 +46,7 @@
       "start": "2023-02-07T12:20:00.000Z",
       "end": "2023-02-07T12:50:00.000Z",
       "hasOwner": true,
-      "owner": 1
+      "owner": 92467918
     },
     {
       "id": 29737144,
@@ -72,8 +72,18 @@
   ],
   "users": [
     {
-      "id": 1,
-      "points": 30
+      "id": 92467918,
+      "email": "child@mail.com",
+      "password": "1234",
+      "points": 130,
+      "type": "child"
+    },
+    {
+      "id": 92467919,
+      "email": "parent@mail.com",
+      "password": "1234",
+      "points": 0,
+      "type": "parent"
     }
   ]
 }

@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AllReservationsComponent implements OnInit {
   public freeReservations: Reservation[] = [];
-  public user!: User;
+  public user: User | null = null;
 
   constructor(
     private scheduleService: ScheduleService,
@@ -21,6 +21,10 @@ export class AllReservationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.user = this.userService.currentUser;
+    this.userService.refeshUserRequired.subscribe(() => {
+      this.user = this.userService.currentUser;
+    });
     this.scheduleService.getReservationsWithoutOwner().subscribe({
       next: (loadedRes) => {
         this.freeReservations = loadedRes;
@@ -34,13 +38,13 @@ export class AllReservationsComponent implements OnInit {
           (loadedRes: Reservation[]) => (this.freeReservations = loadedRes)
         );
     });
-    this.userService.getUserById(1).subscribe((loadedUser: User) => {
-      this.user = loadedUser;
-    });
   }
 
   onAdd(addedReservation: Reservation): void {
-    if (this.getHowLong(addedReservation) <= this.user.points) {
+    if (
+      this.user?.points &&
+      this.getHowLong(addedReservation) <= this.user.points
+    ) {
       addedReservation.owner = this.user.id;
       addedReservation.hasOwner = true;
       this.scheduleService.updateReservation(addedReservation).subscribe(() => {

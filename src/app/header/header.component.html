@@ -1,8 +1,5 @@
-<mat-card>
-  <mat-card-content class="menu">
-    <button mat-button>
-      <a routerLink="/home">Change profile</a>
-    </button>
+<mat-card class="menu">
+  <mat-card-content>
     <button mat-button (click)="onTasks()">
       <a>Tasks</a>
     </button>
@@ -10,4 +7,10 @@
       <a>Reservations</a>
     </button>
   </mat-card-content>
+  <mat-card-actions
+    ><button extended mat-fab color="accent" (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </mat-card-actions>
 </mat-card>
